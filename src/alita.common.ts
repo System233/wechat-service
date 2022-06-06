@@ -5,8 +5,10 @@
 import { deserialize, serialize } from 'v8';
 import { WebSocket, WebSocketServer } from 'ws'
 
-export const WS_HOST='0.0.0.0';
-export const WS_PORT=8899;
+export const WS_HOST=process.env.WS_HOST??'0.0.0.0';
+export const WS_PORT=parseInt(process.env.WS_PORT)||8899;
+export const WS_URL=process.env.WS_URL||'ws://localhost:8899';
+export const ALITA_PATH=process.env.ALITA_PATH||'./alita.node';
 export type SyncData = [name: string, member: string, target: string, id: string, once: boolean, args: any[]];
 export type CallbackData=[id:string,data:any[]];
 export interface IServerHandler {
@@ -31,6 +33,6 @@ export const RunAsServer=(handler:IHandler)=>{
     ws.on('connection',(socket)=>Bind(socket,handler));
 }
 export const RunAsClient=(handler:IHandler)=>{
-    const socket=new WebSocket(`ws://localhost:8899`);
+    const socket=new WebSocket(WS_URL);
     socket.on('open',()=>Bind(socket,handler));
 }

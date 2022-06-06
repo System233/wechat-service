@@ -4,9 +4,9 @@
 // https://opensource.org/licenses/MIT
 
 import { ABIRPC, GetABIPRC } from "abi-rpc";
-import { IClientHandler, IServerHandler, RunAsServer } from "./alita.common";
+import { ALITA_PATH, IClientHandler, IServerHandler, RunAsServer } from "./alita.common";
 import {nanoid} from 'nanoid'
-const instance=require('./alita') as Record<string,Function>;
+const instance=require(ALITA_PATH) as Record<string,Function>;
 class ServerHander implements IServerHandler{
     map:Map<string,any>=new Map;
     sync(targetId: string,name:string, member: string, args: any[]) {

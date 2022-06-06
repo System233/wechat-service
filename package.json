@@ -5,6 +5,7 @@
   "scripts": {
     "test": "node ./dist/cjs/tests/main.js",
     "clean": "rm -rf dist",
+    "serve": "node ./dist/cjs/src/alita.server.js",
     "build": "npm run build:cjs",
     "build:cjs": "npx tsc",
     "build:esm": "npx tsc -p tsconfig.esm.json"
