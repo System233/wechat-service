@@ -1,6 +1,6 @@
 {
   "name": "wechat-service",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A native call proxy for linux wechat.",
   "scripts": {
     "test": "node ./dist/cjs/tests/main.js",
