@@ -16,12 +16,14 @@ class ClientHandler implements IClientHandler {
         this.handler([callbackId, data]);
     }
 }
-
+const log=(...args:any)=>{
+    console.log('[Worker]',...args);
+}
 export = (() => {
     if (isMainThread) {
-
+        log('Loading Main Worker');
         const getMemberParams = (name: string, member: string) => {
-            const params = Array.from(Alita[name][member]?.params || []);
+            const params = Array.from((Alita[name] || {})[member]?.params || []);
             if (member.endsWith('Async') || member == 'setOnNotify') {
                 params.push('callback');
             }
@@ -31,10 +33,11 @@ export = (() => {
         const buffer = new SharedArrayBuffer(4);
         const lock = new Int32Array(buffer);
         const worker = new Worker(__filename, {
-            workerData: { workerPort, buffer },
+            workerData: { workerPort, buffer }, transferList: [workerPort]
         });
         const event = new EventEmitter;
         worker.on('message', (id: string, args: any[]) => event.emit(id, ...args));
+        worker.on('messageerror',(error)=>console.error('[Worker]',error));
         const callSync = <T = any>(name: string, member: string, target: string, args: any[]): T => {
             mainPort.postMessage([name, member, target, null, false, args] as SyncData);
             Atomics.wait(lock, 0, 0);
@@ -58,11 +61,14 @@ export = (() => {
 
             if (member == 'constructor') {
                 const constructor = function (...args: any[]) {
+                    if(!new.target){
+                        return Reflect.construct(constructor,args);
+                    }
                     const target = callSync(name, member, null, args);
                     Reflect.set(this, kAlitaTarget, target);
                     return this;
                 }
-                constructor.name = name;
+                Object.defineProperty(constructor, 'name', { value: name, writable: false })
                 return constructor;
             }
             if (member.endsWith('Async')) {
@@ -70,7 +76,7 @@ export = (() => {
                     const target = Reflect.get(this, kAlitaTarget);
                     callAsyncOnce(name, member, target, args);
                 }
-                asyncMember.name = member;
+                Object.defineProperty(asyncMember, 'name', { value: name, writable: false })
                 return asyncMember;
             }
             if (member == 'setOnNotify') {
@@ -84,7 +90,7 @@ export = (() => {
                 const target = Reflect.get(this, kAlitaTarget);
                 return callSync(name, member, target, args);
             }
-            value.name = member;
+            Object.defineProperty(value, 'name', { value: name, writable: false })
             return value;
 
         }
@@ -107,17 +113,23 @@ export = (() => {
             ];
         }))
     } else {
+        log('Loading Async Worker');
         const { workerPort, buffer } = workerData as { workerPort: MessagePort, buffer: SharedArrayBuffer };
         const lock = new Int32Array(buffer);
         RunAsClient((sender) => {
             const handler = new ABIRPC<IServerHandler>(sender, new ClientHandler((value) => parentPort.postMessage(value)));
             workerPort.addEventListener('message', async (event: MessageEvent) => {
-                const [name, member, target, id, once, args] = event.data as SyncData;
-                const data = id != null ? handler.call(once ? 'once' : 'async', target, name, member, id, args) : handler.call('sync', target, name, member, args);
-                workerPort.postMessage(data);
-                Atomics.notify(lock, 0);
+                try {
+                    const [name, member, target, id, once, args] = event.data as SyncData;
+                    const data = id != null ? await handler.call(once ? 'once' : 'async', target, name, member, id, args) : await handler.call('sync', target, name, member, args);
+                    workerPort.postMessage(data);
+                } catch (error) {
+                    parentPort.emit('messageerror',error);
+                }finally{
+                    Atomics.notify(lock, 0);
+                }
             });
             return data => handler.handle(data);
-        });
+        },(error)=>parentPort.emit('messageerror',error));
     }
 })()

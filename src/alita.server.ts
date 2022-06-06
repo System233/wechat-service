@@ -39,4 +39,4 @@ class ServerHander implements IServerHandler{
 RunAsServer((sender=>{
     const handler=new ABIRPC(sender,new ServerHander);
     return data=>handler.handle(data);
-}))
+}),console.error);

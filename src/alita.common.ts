@@ -2,9 +2,9 @@
 // 
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import { deserialize, serialize } from 'v8';
-import { WebSocket, WebSocketServer } from 'ws'
 
+import { WebSocket, WebSocketServer } from 'ws'
+import {TSON} from 'tson-serializer'
 export const WS_HOST=process.env.WS_HOST??'0.0.0.0';
 export const WS_PORT=parseInt(process.env.WS_PORT)||8899;
 export const WS_URL=process.env.WS_URL||'ws://localhost:8899';
@@ -23,16 +23,27 @@ export type ISender=(data:any,cb:(err:Error)=>void)=>void;
 export type IRecvicer=(data:any)=>void;
 export type IHandler=(sender:ISender)=>IRecvicer;
 
+const tson=TSON;
+
 export const Bind=(socket:WebSocket,handler:IHandler)=>{
-    const sender:ISender=(data,cb)=>socket.send(serialize(data),cb);
+    const sender:ISender=(data,cb)=>socket.send(Buffer.from(tson.stringify(data)),cb);
     const recviver=handler(sender);
-    socket.on('message',(data)=>(Array.isArray(data)?data:[data]).forEach(x=>recviver(deserialize(Buffer.from(x)))));
+    socket.on('message',(data)=>(Array.isArray(data)?data:[data]).forEach(x=>recviver(tson.parse(Buffer.from(x).toString('utf-8')))));
 }
-export const RunAsServer=(handler:IHandler)=>{
+export const RunAsServer=(handler:IHandler,error:(error:Error)=>void)=>{
     const ws=new WebSocketServer({host:WS_HOST,port:WS_PORT});
+    ws.on('connection',(socket,request)=>{
+        const remoteAddress=request.socket.remoteAddress;
+        console.log('connection',Date.now(), remoteAddress);
+        socket.on('close',()=>console.log('close',Date.now(),remoteAddress));
+    });
     ws.on('connection',(socket)=>Bind(socket,handler));
+    ws.on('error',error);
+    console.log('WebSocket server running on',WS_PORT);
 }
-export const RunAsClient=(handler:IHandler)=>{
+export const RunAsClient=(handler:IHandler,error:(error:Error)=>void)=>{
     const socket=new WebSocket(WS_URL);
     socket.on('open',()=>Bind(socket,handler));
+    socket.on('error',error);
+    socket.on('close',(code,reason)=>error(new Error(`${reason.toString('utf-8')} (${code})`)));
 }
