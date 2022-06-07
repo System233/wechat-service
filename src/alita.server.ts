@@ -6,6 +6,8 @@
 import { ABIRPC, GetABIPRC } from "abi-rpc";
 import { ALITA_PATH, IClientHandler, IServerHandler, RunAsServer } from "./alita.common";
 import {nanoid} from 'nanoid'
+
+console.log('ALITA_PATH',ALITA_PATH);
 const instance=require(ALITA_PATH) as Record<string,Function>;
 class ServerHander implements IServerHandler{
     map:Map<string,any>=new Map;
@@ -28,7 +30,7 @@ class ServerHander implements IServerHandler{
         const target=Reflect.get(constructor.prototype,member) as Function;
         const self=this.map.get(targetId);
         const ctx=GetABIPRC<IClientHandler>(this);
-        return Reflect.apply(target,self,[...args,(result:any)=>ctx.call('callback',callbackId,result)]);
+        return Reflect.apply(target,self,[...args,(...args:any[])=>ctx.call('callback',callbackId,...args)]);
     }
     once(target: string, name:string,member: string, callbackId: string, args: any[]) {
         return this.async(target,name,member,callbackId,args);

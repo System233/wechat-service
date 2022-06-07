@@ -9,15 +9,15 @@ import { nanoid } from 'nanoid'
 import { ABIRPC } from 'abi-rpc'
 import { receiveMessageOnPort, Worker, MessageChannel, isMainThread, workerData, parentPort } from 'worker_threads'
 import { IClientHandler, SyncData, IServerHandler, CallbackData, RunAsClient } from "./alita.common";
-const kAlitaTarget = Symbol('AlitaTarget');
+const kAlitaTarget = Symbol('kAlitaTarget');
 class ClientHandler implements IClientHandler {
     constructor(public handler: (value: CallbackData) => void) { }
-    callback(callbackId: string, data: any) {
-        this.handler([callbackId, data]);
+    callback(callbackId: string, ...args: any) {
+        this.handler([callbackId, args]);
     }
 }
 const log=(...args:any)=>{
-    console.log('[Worker]',...args);
+    console.debug(isMainThread?'[WorkerMain]':'[Worker]',...args);
 }
 export = (() => {
     if (isMainThread) {
@@ -36,25 +36,38 @@ export = (() => {
             workerData: { workerPort, buffer }, transferList: [workerPort]
         });
         const event = new EventEmitter;
-        worker.on('message', (id: string, args: any[]) => event.emit(id, ...args));
+        worker.on('message', ([id, args]:[string,any[]]) => event.emit(id, ...args));
         worker.on('messageerror',(error)=>console.error('[Worker]',error));
-        const callSync = <T = any>(name: string, member: string, target: string, args: any[]): T => {
-            mainPort.postMessage([name, member, target, null, false, args] as SyncData);
+        const call=<T = any>(name: string, member: string, target: string,callbackId:string,once:boolean, args: any[]): T =>{
+            log('Main',name,member,target,callbackId,once,args);
+            mainPort.postMessage([name, member, target, callbackId, once, args] as SyncData);
             Atomics.wait(lock, 0, 0);
-            const { message } = receiveMessageOnPort(mainPort);
-            return message;
+            const { message } = receiveMessageOnPort(mainPort) as {message:[boolean,any]};
+            const [fail,data]=message;
+            if(fail){
+                log('MainFail',name,member,target,data);
+                throw data;
+            }
+            log('MainResult',name,member,target,data);
+            return data;
+        }
+        const callSync = <T = any>(name: string, member: string, target: string, args: any[]): T => {
+            log('callSync',name,member,target,args);
+            return call(name, member, target, null, false, args);
         }
         const callAsync = (name: string, member: string, target: string, args: any[]) => {
+            log('callAsync',name,member,target,args);
             const callback = args[args.length - 1];
             const callbackId = [name, member, target].join('.');
             event.on(callbackId, callback);
-            mainPort.postMessage([name, member, target, callbackId, false, args.slice(0, -1)] as SyncData);
+            return call(name, member, target, callbackId, false, args.slice(0, -1));
         }
         const callAsyncOnce = (name: string, member: string, target: string, args: any[]) => {
+            log('callAsyncOnce',name,member,target,args);
             const callback = args[args.length - 1];
             const callbackId = nanoid();
             event.once(callbackId, callback);
-            mainPort.postMessage([name, member, target, callbackId, true, args.slice(0, -1)] as SyncData);
+            return call(name, member, target, callbackId, true, args.slice(0, -1));
         }
 
         const getHandler = (name: string, member: string) => {
@@ -117,19 +130,32 @@ export = (() => {
         const { workerPort, buffer } = workerData as { workerPort: MessagePort, buffer: SharedArrayBuffer };
         const lock = new Int32Array(buffer);
         RunAsClient((sender) => {
-            const handler = new ABIRPC<IServerHandler>(sender, new ClientHandler((value) => parentPort.postMessage(value)));
+            const handler = new ABIRPC<IServerHandler>(sender, new ClientHandler((value) => {
+                log('Callback',value);
+                parentPort.postMessage(value);
+            }));
             workerPort.addEventListener('message', async (event: MessageEvent) => {
                 try {
                     const [name, member, target, id, once, args] = event.data as SyncData;
+                    log('Call',name, member, target, id, once, args)
                     const data = id != null ? await handler.call(once ? 'once' : 'async', target, name, member, id, args) : await handler.call('sync', target, name, member, args);
-                    workerPort.postMessage(data);
+                    workerPort.postMessage([false,data]);
+                    log('CallResult',name, member, target, data);
                 } catch (error) {
+                    log('CallFail',event.data, error);
                     parentPort.emit('messageerror',error);
+                    workerPort.postMessage([true,error]);
                 }finally{
                     Atomics.notify(lock, 0);
                 }
             });
-            return data => handler.handle(data);
-        },(error)=>parentPort.emit('messageerror',error));
+            return data => handler.handle(data).catch(error=>{
+                log('Handle',error);
+                parentPort.emit('messageerror',error);
+            });
+        },(error)=>{
+            log('Socket',error);
+            parentPort.emit('messageerror',error)
+        });
     }
 })()

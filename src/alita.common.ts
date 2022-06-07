@@ -17,7 +17,7 @@ export interface IServerHandler {
     once(targetId:string,name:string,member:string,callbackId:string,args:any[]):any;
 }
 export interface IClientHandler {
-    callback(callbackId:string,data:any):void;
+    callback(callbackId:string,...args:any):void;
 }
 export type ISender=(data:any,cb:(err:Error)=>void)=>void;
 export type IRecvicer=(data:any)=>void;
@@ -33,9 +33,9 @@ export const Bind=(socket:WebSocket,handler:IHandler)=>{
 export const RunAsServer=(handler:IHandler,error:(error:Error)=>void)=>{
     const ws=new WebSocketServer({host:WS_HOST,port:WS_PORT});
     ws.on('connection',(socket,request)=>{
-        const remoteAddress=request.socket.remoteAddress;
-        console.log('connection',Date.now(), remoteAddress);
-        socket.on('close',()=>console.log('close',Date.now(),remoteAddress));
+        const remoteAddress=`${request.socket.remoteAddress}:${request.socket.remotePort}->${request.socket.localPort}`;
+        console.log(Date.now(),'connection', remoteAddress);
+        socket.on('close',()=>console.log(Date.now(),'close',remoteAddress));
     });
     ws.on('connection',(socket)=>Bind(socket,handler));
     ws.on('error',error);
