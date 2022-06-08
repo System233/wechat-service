@@ -1,0 +1,747 @@
+// 
+// This file is decompiled by depbjs v0.0.5.
+// source: .\index.js
+// 
+syntax = "proto3";
+package alita;
+
+message LogConfig {
+    bool isUseAlitaLog = 1;
+    bool isEnableConsole = 2;
+    bool isUseFilter = 3;
+    uint32 level = 4;
+    string logDir = 5;
+    string publicKey = 6;
+    uint32 maxAliveDays = 8;
+    bool isWriteLogFile = 9;
+    uint32 maxLogFileSize = 10;
+};
+
+message WriteRequest {
+    uint64 pid = 1;
+    uint64 tid = 2;
+    uint64 cid = 3;
+    int32 level = 4;
+    string tag = 5;
+    string filename = 6;
+    uint32 line = 7;
+    string functionName = 8;
+    string log = 9;
+};
+
+message WriteLogRequest {
+    uint64 pid = 1;
+    uint64 tid = 2;
+    uint64 cid = 3;
+    int32 level = 4;
+    string tag = 5;
+    string filename = 6;
+    uint32 line = 7;
+    string functionName = 8;
+    string log = 9;
+};
+
+message FilterLogRequest {
+    uint64 pid = 1;
+    uint64 tid = 2;
+    uint64 cid = 3;
+    int32 level = 4;
+    string tag = 5;
+    string filename = 6;
+    uint32 line = 7;
+    string functionName = 8;
+    string log = 9;
+};
+
+enum AlitaLogEventType {
+    kWriteLogEvent = 0;
+    kFilterLogEvent = 1;
+};
+
+enum LogLevel {
+    kLogLevelAll = 0;
+    kLogLevelDebug = 1;
+    kLogLevelInfo = 2;
+    kLogLevelWarn = 3;
+    kLogLevelError = 4;
+    kLogLevelFatal = 5;
+    kLogLevelNone = 6;
+};
+
+enum PresetDebugIp {
+    kPresetDebugIpNone = 0;
+    kPresetDebugIpManual = 1;
+    kPresetDebugIp995 = 2;
+    kPresetDebugIpHK990 = 3;
+    kPresetDebugIp1001 = 4;
+    kPresetDebugIp1002 = 5;
+    kPresetDebugIpSZ1001 = 6;
+    kPresetDebugIpSZ1002 = 7;
+    kPresetDebugIpHK1001 = 8;
+    kPresetDebugIpHK1002 = 9;
+    kPresetDebugIpCA1001 = 10;
+    kPresetDebugIpCA1002 = 11;
+    kPresetDebugIp993 = 12;
+};
+
+enum DeviceTypeId {
+    kDeviceTypeIdUnknown = 0;
+    kDeviceTypeIdIphone = 1;
+    kDeviceTypeIdAndroid = 2;
+    kDeviceTypeIdS60V3 = 3;
+    kDeviceTypeIdS60V5 = 4;
+    kDeviceTypeIdWp7 = 5;
+    kDeviceTypeIdWebWx = 6;
+    kDeviceTypeIdBlackberry = 7;
+    kDeviceTypeIdWp8 = 8;
+    kDeviceTypeIdS40Asha = 9;
+    kDeviceTypeIdBlackberry10 = 10;
+    kDeviceTypeIdS40AshaV5 = 11;
+    kDeviceTypeIdAndroidLite = 12;
+    kDeviceTypeIdIpad = 13;
+    kDeviceTypeIdImac = 14;
+    kDeviceTypeIdWindows = 15;
+    kDeviceTypeIdDjj = 19;
+    kDeviceTypeIdAlbum = 24;
+    kDeviceTypeIdKidsWatch = 26;
+};
+
+enum NetworkPolicy {
+    kNetworkPolicyDefault = 0;
+    kNetworkPolicyShort = 1;
+    kNetworkPolicyLong = 2;
+    kNetworkPolicyBoth = 3;
+};
+
+enum LoginState {
+    kLoginStateIdle = 0;
+    kLoginStateLoggingIn = 1;
+    kLoginStateLoggedIn = 2;
+    kLoginStateLoggingOut = 3;
+    kLoginStateExpired = 4;
+    kLoginStateLoggedOut = 5;
+    kLoginStateKickedOut = 6;
+};
+
+enum AvatarImageType {
+    kAvatarImageTypeUnknown = 0;
+    kAvatarImageTypeSmall = 1;
+    kAvatarImageTypeHd = 2;
+};
+
+enum LoginQrCodeNotifyStatus {
+    kLoginQrCodeNotifyStatusWait = 0;
+    kLoginQrCodeNotifyStatusScaned = 1;
+    kLoginQrCodeNotifyStatusConfirmed = 2;
+    kLoginQrCodeNotifyStatusExpired = 3;
+    kLoginQrCodeNotifyStatusCancel = 4;
+    kLoginQrCodeNotifyStatusBluetoothScaned = 5;
+    kLoginQrCodeNotifyStatusBluetoothConfirmed = 6;
+    kLoginQrCodeNotifyStatusBluetoothLogin = 7;
+    kLoginQrCodeNotifyStatusBluetoothAutoAuthCheck = 8;
+    kLoginQrCodeNotifyStatusError = 9;
+    kLoginQrCodeNotifyStatusAlbumCheckBind = 10;
+};
+
+enum CommonOperation {
+    kCommonOperationAdd = 0;
+    kCommonOperationDelete = 1;
+    kCommonOperationUpdate = 2;
+};
+
+enum MessageFlag {
+    kMessageFlagNone = 0;
+    kMessageFlagSend = 1;
+    kMessageFlagReceive = 2;
+    kMessageFlagUnRead = 4;
+    kMessageFlagUnOpened = 8;
+};
+
+enum MessageStatus {
+    kMessageStatusUnknown = 0;
+    kMessageStatusNone = 1;
+    kMessageStatusSending = 2;
+    kMessageStatusSent = 3;
+    kMessageStatusReceiving = 4;
+    kMessageStatusReceived = 5;
+    kMessageStatusFail = 6;
+    kMessageStatusVoipAnswer = 7;
+    kMessageStatusVoipNoAnswer = 8;
+    kMessageStatusVoipFail = 9;
+};
+
+enum MessageDataType {
+    kMessageDataTypeUnknown = 0;
+    kMessageDataTypeText = 1;
+    kMessageDataTypeImg = 3;
+    kMessageDataTypePrivateMsgText = 11;
+    kMessageDataTypePrivateMsgImg = 13;
+    kMessageDataTypeChatRoomMsgText = 21;
+    kMessageDataTypeChatRoomMsgImg = 23;
+    kMessageDataTypeVoiceMsg = 34;
+    kMessageDataTypePushMail = 35;
+    kMessageDataTypeQMsg = 36;
+    kMessageDataTypeVerifyMsg = 37;
+    kMessageDataTypePushSystemMsg = 38;
+    kMessageDataTypeQQLiXianMsg = 39;
+    kMessageDataTypePossibleFriendMsg = 40;
+    kMessageDataTypePushSoftware = 41;
+    kMessageDataTypeShareCard = 42;
+    kMessageDataTypeVideo = 43;
+    kMessageDataTypeVideoIphoneExport = 44;
+    kMessageDataTypeGmailPushMail = 45;
+    kMessageDataTypeEmpty = 46;
+    kMessageDataTypeEmoji = 47;
+    kMessageDataTypeLocation = 48;
+    kMessageDataTypeAppMsg = 49;
+    kMessageDataTypeVoipMsg = 50;
+    kMessageDataTypeStatusNotify = 51;
+    kMessageDataTypeWeiboPush = 52;
+    kMessageDataTypeWebwxVoipNotify = 53;
+    kMessageDataTypeChatRoomVerifyMsg = 54;
+    kMessageDataTypeBrandQaAsk = 55;
+    kMessageDataTypeTalkSysMsg = 56;
+    kMessageDataTypeBrandQaMsg = 57;
+    kMessageDataTypeOpenSubscribe = 58;
+    kMessageDataTypeOpenReport = 59;
+    kMessageDataTypeOpenLink = 60;
+    kMessageDataTypeKF = 61;
+    kMessageDataTypeShortVideo = 62;
+    kMessageDataTypeSysCmdIpxx = 9998;
+    kMessageDataTypeSysNotice = 9999;
+    kMessageDataTypeSys = 10000;
+    kMessageDataTypeSysCmdXml = 10001;
+    kMessageDataTypeSysCmdNewXml = 10002;
+};
+
+enum ConversationSyncAction {
+    kConversationSyncActionNone = 0;
+    kConversationSyncActionAfterLogin = 1;
+    kConversationSyncActionAfterSleep = 2;
+    kConversationSyncActionLoadMore = 3;
+};
+
+enum ContactFlag {
+    kContactFlagNone = 0;
+    kContactFlagContact = 1;
+    kContactFlagChat = 2;
+    kContactFlagChatRoom = 4;
+    kContactFlagBlackList = 8;
+    kContactFlagDomain = 16;
+    kContactFlagHide = 32;
+    kContactFlagFavour = 64;
+    kContactFlag3RdApp = 128;
+    kContactFlagSnsBlackList = 256;
+    kContactFlagMute = 512;
+    kContactFlagUnDeliver = 1024;
+    kContactFlagTop = 2048;
+    kContactFlagAutoAdd = 4096;
+    kContactFlagTextTranslate = 8192;
+    kContactFlagFrozen = 16384;
+    kContactFlagWatchContact = 131072;
+};
+
+enum VoIPState {
+    kVoIPStateUnknown = 0;
+    kVoIPStateInited = 1;
+    kVoIPStateDialing = 2;
+    kVoIPStateIncoming = 3;
+    kVoIPStateWaitConnect = 4;
+    kVoIPStateConnected = 5;
+    kVoIPStateTalking = 6;
+};
+
+enum VoIPFinishType {
+    kVoIPFinishTypeNormal = 0;
+    kVoIPFinishTypeReject = 1;
+    kVoIPFinishTypeCancel = 2;
+    kVoIPFinishTypeRecvReject = 3;
+    kVoIPFinishTypeRecvShutDown = 4;
+    kVoIPFinishTypeBlock = 5;
+    kVoIPFinishTypeBusy = 6;
+    kVoIPFinishTypeNotFriend = 7;
+    kVoIPFinishTypeRecvCancel = 8;
+    kVoIPFinishTypeNotSupport = 9;
+    kVoIPFinishTypePluginClose = 10;
+    kVoIPFinishTypeTimeout = 11;
+    kVoIPFinishTypeUnknownError = 12;
+};
+
+enum AppMessageType {
+    kAppMessageTypeUnknown = 0;
+    kAppMessageTypeText = 1;
+    kAppMessageTypeImage = 2;
+    kAppMessageTypeMusic = 3;
+    kAppMessageTypeVideo = 4;
+    kAppMessageTypeUrl = 5;
+    kAppMessageTypeFile = 6;
+    kAppMessageTypeAppData = 7;
+    kAppMessageTypeEmoji = 8;
+    kAppMessageTypeProduct = 10;
+    kAppMessageTypeEmoticonGift = 11;
+    kAppMessageTypeDeviceAccess = 12;
+    kAppMessageTypeMallProduct = 13;
+    kAppMessageTypeOldTv = 14;
+    kAppMessageTypeEmoticonShared = 15;
+    kAppMessageTypeCardShare = 16;
+    kAppMessageTypeLocationShare = 17;
+    kAppMessageTypeRecord = 19;
+    kAppMessageTypeTv = 20;
+    kAppMessageTypeNote = 24;
+    kAppMessageTypeDesignerShared = 25;
+    kAppMessageTypeEmotionListShared = 26;
+    kAppMessageTypeEmojiListShared = 27;
+    kAppMessageTypeLocation = 30;
+    kAppMessageTypeAppBrand = 33;
+    kAppMessageTypeGiftCard = 34;
+    kAppMessageTypeSyncRecord = 35;
+    kAppMessageTypeOpenSdkAppBrand = 36;
+    kAppMessageTypeVideoFile = 38;
+    kAppMessageTypeGameVideoFile = 39;
+    kAppMessageTypeBusinessCard = 45;
+    kAppMessageTypeOpenSdkAppBrandWeishiVideo = 46;
+    kAppMessageTypeOpenSdkWeworkObject = 49;
+    kAppMessageTypeFinderNameCard = 50;
+    kAppMessageTypeFinderFeed = 51;
+    kAppMessageTypeFinderEndorsment = 52;
+    kAppMessageTypeSolitaire = 53;
+    kAppMessageTypeMpShareVideoAppMsg = 54;
+    kAppMessageTypeMsgQuote = 57;
+    kAppMessageTypeFinderTopic = 59;
+    kAppMessageTypeMegaVideoShare = 71;
+    kAppMessageTypeMmliveShare = 60;
+    kAppMessageTypePatMsg = 62;
+    kAppMessageTypeFinderLive = 63;
+    kAppMessageTypeFinderLiveBooking = 64;
+    kAppMessageTypeFinderLiveInvite = 65;
+    kAppMessageTypeGameLifeGift = 66;
+    kAppMessageTypeGameLifeCard = 69;
+    kAppMessageTypeLiteApp = 68;
+    kAppMessageTypeFinderColumnCard = 73;
+    kAppMessageTypeFinderFollowTopic = 72;
+};
+
+enum AppBrandShareType {
+    kAppBrandShareTypeShareToFriendsNews = 0;
+    kAppBrandShareTypeShareToFriendsCard = 1;
+    kAppBrandShareTypePage = 2;
+    kAppBrandShareTypePageWithShareTicket = 3;
+};
+
+enum CdnFileType {
+    kMediaTypeAny = 0;
+    kMediaTypeFullSizeImage = 1;
+    kMediaTypeImage = 2;
+    kMediaTypeThumbImage = 3;
+    kMediaTypeVideo = 4;
+    kMediaTypeSCVideo = 54;
+    kMediaTypeFile = 5;
+    kMediaTypeTinyVideo = 6;
+    kMediaTypeBigFile = 7;
+    kMediaTypeBigFile_1G = 9;
+    kMediaTypeActivityFile = 10;
+    kMediaTypeBackupChatMsg = 14;
+    kMediaTypeBackupChatAudio = 15;
+    kMediaTypeWIMDownload = 19;
+    kMediaTypeSeeSeeVideo = 90;
+    kMediaTypeFavoriteFile = 10001;
+    kMediaTypeFavoriteVideo = 10002;
+    kMediaTypeFavoriteBigFile = 10007;
+    kMediaTypeExposeImage = 11000;
+    kMediaTypeBeatificFile = 10011;
+    kMediaTypeBackupFile = 20001;
+    kMediaTypeFriends = 20201;
+    kMediaTypeFriendsVideo = 20202;
+    kMediaTypeFriendsADImageThumb = 20204;
+    kMediaTypeFriendsImageThumb = 20205;
+    kMediaTypeFriendsVideoThumbImage = 20250;
+    kMediaTypeShop = 20301;
+    kMediaTypeNearEvent = 20310;
+    kMediaTypeSmartHwPage = 20321;
+    kMediaTypeAdVideo = 20210;
+    kMediaTypeAppVideo = 20302;
+    kMediaTypeAppFile = 20303;
+    kMediaTypeAppImageStorage = 20304;
+    kMediaTypeHWDevice = 20322;
+    kMediaTypeAppVideoThumb = 20350;
+    kMediaTypeEmojiNormal = 20401;
+    kMediaTypeEmojiGIF = 20402;
+    kMediaTypeEmojiWXAM = 20403;
+    kMediaLittleAppPacket = 30001;
+    kMediaGamePacket = 30002;
+    kMediaTinkerPatch = 30003;
+    kMediaXWebRuntime = 30004;
+    kMediaXWebRuntimePatch = 30005;
+    kMediaXWebConfig = 30006;
+    kMediaGeneralResource = 40001;
+    kMediaWAGameVideo = 50001;
+};
+
+enum MessageDownloadType {
+    kMessageDownloadTypeNone = 0;
+    kMessageDownloadTypeImageMessageThumb = 10;
+    kMessageDownloadTypeImageMessageMiddle = 11;
+    kMessageDownloadTypeImageMessageFullSize = 12;
+    kMessageDownloadTypeVoiceMessageVoice = 20;
+    kMessageDownloadTypeEmojiMessageEmoji = 30;
+    kMessageDownloadTypeVideoMessageThumb = 40;
+    kMessageDownloadTypeVideoMessageVideo = 41;
+    kMessageDownloadTypeAppMessageAppBrandThumb = 50;
+    kMessageDownloadTypeAppMessageFile = 51;
+    kMessageDownloadTypeAppMessageEmoji = 52;
+    kMessageDownloadTypeAppMessageUrlThumb = 53;
+    kMessageDownloadTypeAppMessageRecord = 54;
+};
+
+enum MessageDownloadGeneralType {
+    kMessageDownloadGeneralTypeGeneral = 0;
+    kMessageDownloadGeneralTypeNone = 1;
+};
+
+enum VoiceMessageMediaFormat {
+    kVoiceMessageMediaFormatAmr = 0;
+    kVoiceMessageMediaFormatSpeex = 1;
+    kVoiceMessageMediaFormatMp3 = 2;
+    kVoiceMessageMediaFormatWave = 3;
+    kVoiceMessageMediaFormatSilk = 4;
+};
+
+enum StatusNotifyMessageType {
+    kStatusNotifyMessageTypeUnknown = 0;
+    kStatusNotifyMessageTypeSendCommand = 11;
+};
+
+enum StatusNotifySendCommand {
+    kStatusNotifySendCommandUnknown = 0;
+    kStatusNotifySendCommandHandOffMaster = 1;
+};
+
+enum StatusNotifyHandOffDataType {
+    kStatusNotifyHandOffDataTypeUnknown = 0;
+    kStatusNotifyHandOffDataTypeFile = 1;
+    kStatusNotifyHandOffDataTypeUrl = 2;
+    kStatusNotifyHandOffDataTypeMiniProgram = 3;
+    kStatusNotifyHandOffDataTypeMiniGame = 4;
+    kStatusNotifyHandOffDataTypeWsVideoFlow = 5;
+};
+
+enum StatusNotifyHandOffType {
+    kStatusNotifyHandOffTypeUnknown = 0;
+    kStatusNotifyHandOffTypeHandOff = 1;
+    kStatusNotifyHandOffTypeFloatWindow = 2;
+};
+
+enum StatusNotifyHandOffOpCode {
+    kStatusNotifyHandOffOpCodeUnknown = 0;
+    kStatusNotifyHandOffOpCodeAdd = 1;
+    kStatusNotifyHandOffOpCodeDel = 2;
+    kStatusNotifyHandOffOpCodeMod = 3;
+    kStatusNotifyHandOffOpCodeAllList = 4;
+    kStatusNotifyHandOffOpCodeExpired = 5;
+    kStatusNotifyHandOffOpCodeGetAllList = 6;
+    kStatusNotifyHandOffOpCodeUploading = 7;
+    kStatusNotifyHandOffOpCodeUploadFailed = 8;
+    kStatusNotifyHandOffOpCodeCancelUpload = 9;
+};
+
+enum StatusNotifyHandOffFileStatus {
+    kStatusNotifyHandOffFileStatusUnknown = 0;
+    kStatusNotifyHandOffFileStatusDownloaded = 1;
+    kStatusNotifyHandOffFileStatusNotDownloaded = 2;
+    kStatusNotifyHandOffFileStatusExpired = 3;
+};
+
+enum StatusNotifyHandOffSource {
+    kStatusNotifyHandOffSourceUnknown = 0;
+    kStatusNotifyHandOffSourceMsg = 1;
+    kStatusNotifyHandOffSourceMessageFav = 2;
+};
+
+enum UsernameType {
+    kUsernameTypeUnknown = 0;
+    kUsernameTypeEncode = 1;
+    kUsernameTypeChatRoom = 2;
+    kUsernameTypeLbsRoom = 3;
+    kUsernameTypeGroupCard = 4;
+    kUsernameTypeQQContact = 5;
+    kUsernameTypeSXContact = 6;
+    kUsernameTypeBottleContact = 7;
+    kUsernameTypeFBFriend = 8;
+    kUsernameTypeBrandContact = 9;
+    kUsernameTypeOpenIMChatRoom = 10;
+    kUsernameTypeOpenIMContact = 11;
+};
+
+enum ChatRoomMemberFlag {
+    kChatRoomMemberFlagNone = 0;
+    kChatRoomMemberFlagDisplayName = 1;
+    kChatRoomMemberFlagUndeliver = 2;
+    kChatRoomMemberFlagInroomVerify = 4;
+    kChatRoomMemberFlagContact = 8;
+    kChatRoomMemberFlagOverhead = 16;
+};
+
+enum EmojiPanelType {
+    kEmojiPanelTypeCustomNormal = 0;
+    kEmojiPanelTypeCustomCapture = 1;
+    kEmojiPanelTypeStore = 2;
+    kEmojiPanelTypeSimilar = 3;
+    kEmojiPanelTypeBuiltin = 999;
+};
+
+enum EmojiType {
+    kEmojiTypeUnknown = 0;
+    kEmojiTypePng = 1;
+    kEmojiTypeGif = 2;
+    kEmojiTypeJpg = 3;
+    kEmojiTypeText = 4;
+    kEmojiTypeAppEmojiGif = 10;
+    kEmojiTypeAppEmojiJpg = 11;
+};
+
+enum OrderType {
+    kOrderTypeDefault = 0;
+    kOrderTypeDesc = 1;
+    kOrderTypeAsc = 2;
+};
+
+enum ContactAddScene {
+    kContactAddScenePassiveBase = 1000000;
+    kContactAddSceneSearchQQ = 1;
+    kContactAddSceneSearchEmail = 2;
+    kContactAddSceneSearchWeixin = 3;
+    kContactAddScenePfQQ = 4;
+    kContactAddScenePfEmail = 5;
+    kContactAddScenePfContact = 6;
+    kContactAddScenePfWeixin = 7;
+    kContactAddScenePfGroup = 8;
+    kContactAddScenePfUnknown = 9;
+    kContactAddScenePfMobile = 10;
+    kContactAddScenePfMobileEmail = 11;
+    kContactAddSceneViewQQ = 12;
+    kContactAddSceneViewMobile = 13;
+    kContactAddSceneChatroom = 14;
+    kContactAddSceneSearchPhone = 15;
+    kContactAddSceneCorpEmail = 16;
+    kContactAddSceneSendCard = 17;
+    kContactAddSceneLBS = 18;
+    kContactAddScenePfMobileReverse = 21;
+    kContactAddScenePfShakePhonePair = 22;
+    kContactAddScenePfShakePhoneGroup = 23;
+    kContactAddScenePfShakePhoneOppSex = 24;
+    kContactAddSceneBottle = 25;
+    kContactAddSceneShakeScene1 = 26;
+    kContactAddSceneShakeScene2 = 27;
+    kContactAddSceneShakeScene3 = 28;
+    kContactAddSceneShakeScene4 = 29;
+    kContactAddSceneQRCode = 30;
+    kContactAddSceneFacebook = 31;
+    kContactAddSceneSns = 32;
+    kContactAddSceneWeb = 33;
+    kContactAddSceneBrandQA = 34;
+    kContactAddSceneFuzzySearch = 35;
+    kContactAddSceneLogoWall = 36;
+    kContactAddSceneTimeLineBiz = 37;
+    kContactAddScenePromoteMsg = 38;
+    kContactAddSceneSearchBrandBrand = 39;
+    kContactAddScenePromoteBizCard = 41;
+    kContactAddSceneWebPageInside = 42;
+    kContactAddSceneWebPageTopButton = 43;
+    kContactAddSceneLBSRoom = 44;
+    kContactAddSceneScanImage = 45;
+    kContactAddSceneScanImageBook = 47;
+    kContactAddSceneRadarSearch = 48;
+    kContactAddSceneScanBarCode = 49;
+    kContactAddSceneRegAddMFriend = 52;
+    kContactAddSceneSearchBrandService = 53;
+    kContactAddSceneSearchBrandSubscr = 54;
+    kContactAddSceneRecommendBrand = 55;
+    kContactAddSceneInterestedBrand = 56;
+    kContactAddSceneFtsSearchBrand = 57;
+    kContactAddSceneViewGoogleContactList = 58;
+    kContactAddSceneViewGoogleContactAccount = 59;
+    kContactAddSceneViewGoogleContactAsyncRecommend = 60;
+    kContactAddSceneTv = 67;
+    kContactAddSceneSubscribeBizApp = 68;
+    kContactAddSceneSubscribeBizH5 = 69;
+    kContactAddSceneLinkedinContactList = 76;
+    kContactAddSceneFromTimeLineAdHeadImage = 78;
+    kContactAddSceneFromTimeLineAdNickname = 79;
+    kContactAddSceneFromTempSession = 81;
+    kContactAddSceneWebSearchRecommend = 85;
+    kContactAddSceneWechatoutContactList = 86;
+    kContactAddSceneWebSearchHomePage = 87;
+    kContactAddSceneWebSearchDetailPage = 88;
+    kContactAddSceneWebSearchRecommendHotWord = 89;
+    kContactAddSceneFromBizTimeLine = 90;
+    kContactAddSceneJsApiQuicklyAdd = 91;
+    kContactAddSceneFromTempSessionShakeTvHistory = 92;
+    kContactAddSceneFromTempSessionShakeTv = 93;
+    kContactAddSceneFromTempSessionShakeTvWeb = 94;
+    kContactAddSceneFriendReadAppMsgProfile = 95;
+    kContactAddSceneAccessVerify = 96;
+    kContactAddSceneBizFromMpDetailPage = 152;
+    kContactAddSceneBizFromMpPageMenu = 153;
+    kContactAddSceneBizFromWebViewTopBar = 154;
+    kContactAddSceneAddKidsShake = 155;
+    kContactAddSceneAddKidsGuardian = 156;
+    kContactAddSceneBizFromBrandRejectMsg = 158;
+    kContactAddSceneBizFromRecCard = 160;
+    kContactAddSceneBizFromMpVideo = 163;
+    kContactAddSceneBizFromWebViewMenuTop = 173;
+    kContactAddSceneBizFromUnFocuse = 174;
+    kContactAddSceneBizFromVideoFullScreen = 179;
+};
+
+enum UserAttrVerifyFlag {
+    kUserAttrVerifyFlagBiz = 1;
+    kUserAttrVerifyFlagFamous = 2;
+    kUserAttrVerifyFlagBizBig = 4;
+    kUserAttrVerifyFlagBizBrand = 8;
+    kUserAttrVerifyFlagBizVerified = 16;
+    kUserAttrVerifyFlagBizPersonalVerified = 64;
+};
+
+enum ContactVerifyOpCode {
+    kContactVerifyOpCodeMarkRead = 0;
+    kContactVerifyOpCodeMarkReadAll = 1;
+    kContactVerifyOpCodeAccept = 3;
+};
+
+enum VerifyContactState {
+    kContactVerifyStateUnread = 0;
+    kContactVerifyStatePending = 1;
+    kContactVerifyStateAccept = 2;
+};
+
+enum AccountType {
+    kAccountTypeUnknown = 0;
+    kAccountTypeNormal = 1;
+    kAccountTypeKid = 2;
+};
+
+enum SessionType {
+    kSessionTypeUnknown = 0;
+    kSessionTypeMain = 1;
+    kSessionTypeExt = 2;
+};
+
+enum ExtensionRequestFlag {
+    ExtensionRequestFlagFlowLimit = 1;
+    ExtensionRequestFlagFrequencyLimit = 2;
+};
+
+enum ProgressType {
+    kProgressTypeUnknown = 0;
+    kProgressTypeUpload = 1;
+    kProgressTypeDownload = 2;
+};
+
+enum ContactType {
+    kContactTypeUnknown = 0;
+    kContactTypeCommon = 1;
+    kContactTypeBusiness = 2;
+    kContactTypeChatRoom = 4;
+    kContactTypeSystem = 8;
+    kContactTypeSystemFunction = 16;
+    kContactTypeOpenIm = 32;
+    kContactTypeImChatRoom = 64;
+};
+
+enum VoipMessageState {
+    kVoipMessageStateUnknown = 0;
+    kVoipMessageStateFinish = 1;
+    kVoipMessageStateCancel = 2;
+    kVoipMessageStateReject = 3;
+    kVoipMessageStateNoResponse = 4;
+    kVoipMessageStateInterrupt = 5;
+};
+
+enum VoipMessageType {
+    kVoipMessageTypeUnknown = 0;
+    kVoipMessageTypeAudio = 1;
+    kVoipMessageTypeVideo = 2;
+};
+
+enum RecordFromScene {
+    kRecordFromSceneFromFav = 1;
+    kRecordFromSceneFromChat = 2;
+    kRecordFromSceneFromMsgList = 3;
+};
+
+enum FavDataType {
+    kFavDataTypeTxt = 1;
+    kFavDataTypeImg = 2;
+    kFavDataTypeVoice = 3;
+    kFavDataTypeVideo = 4;
+    kFavDataTypeWebPage = 5;
+    kFavDataTypeLoc = 6;
+    kFavDataTypeMusic = 7;
+    kFavDataTypeFile = 8;
+    kFavDataTypeBook = 9;
+    kFavDataTypeGoods = 10;
+    kFavDataTypeGeneralProduct = 11;
+    kFavDataTypeOldTv = 12;
+    kFavDataTypeCard = 13;
+    kFavDataTypeTV = 14;
+    kFavDataTypeSight = 15;
+    kFavDataTypeShardCard = 16;
+    kFavDataTypeRecord = 17;
+    kFavDataTypeNoteShare = 18;
+    kFavDataTypeWeApp = 19;
+    kFavDataTypeFinder = 22;
+    kFavDataTypeFinderLive = 23;
+};
+
+enum FavSourceType {
+    kFavSourceTypeChat = 1;
+    kFavSourceTypeWC = 2;
+    kFavSourceTypeWebPage = 3;
+    kFavSourceType3rd = 4;
+    kFavSourceTypeShake = 5;
+    kFavSourceTypePost = 6;
+    kFavSourceTypeFTN = 7;
+    kFavSourceTypeScan = 8;
+    kFavSourceTypeMail = 9;
+    kFavSourceTypeBanner = 10;
+    kFavSourceTypeGeneralProductDetail = 11;
+    kFavSourceTypeCard = 12;
+    kFavSourceType3rdShare = 13;
+    kFavSourceTypeSingleChat = 21;
+    kFavSourceTypeChatroom = 22;
+    kFavSourceTypeBIZ = 23;
+    kFavSourceTypeGameCenter = 24;
+    kFavSourceTypeTopStory = 25;
+    kFavSourceTypeWebSearch = 26;
+    kFavSourceTypeWwbPageSingleChat = 27;
+    kFavSourceTypeWebPageChatroom = 28;
+    kFavSourceTypeWebPageBIZ = 29;
+    kFavSourceTypeConvertToNote = 30;
+};
+
+enum CustomMenuType {
+    kCustomMenuTypeShowSubMenu = 0;
+    kCustomMenuTypeReportClick = 1;
+    kCustomMenuTypeJump2WebView = 2;
+    kCustomMenuTypeShowInputMode = 3;
+    kCustomMenuTypeClientAction = 4;
+    kCustomMenuTypeOpenWeApp = 5;
+};
+
+enum MMBizInteractiveMode {
+    kMMBizInteractiveModeComm = 0;
+    kMMBizInteractiveModeQuestion = 1;
+    kMMBizInteractiveModeSelfMenu = 2;
+};
+
+message StartRequest {
+    LogConfig config = 1;
+};
+
+message StartResponse {
+    int32 errCode = 1;
+};
+
+message FilterLogResponse {
+    uint32 isKeepLog = 1;
+};

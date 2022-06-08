@@ -9,6 +9,7 @@ import { nanoid } from 'nanoid'
 import { ABIRPC } from 'abi-rpc'
 import { receiveMessageOnPort, Worker, MessageChannel, isMainThread, workerData, parentPort } from 'worker_threads'
 import { IClientHandler, SyncData, IServerHandler, CallbackData, RunAsClient } from "./alita.common";
+import {beforeHook,afterHook} from './alita.hook'
 const kAlitaTarget = Symbol('kAlitaTarget');
 class ClientHandler implements IClientHandler {
     constructor(public handler: (value: CallbackData) => void) { }
@@ -38,11 +39,19 @@ export = (() => {
         const event = new EventEmitter;
         worker.on('message', ([id, args]:[string,any[]]) => event.emit(id, ...args));
         worker.on('messageerror',(error)=>console.error('[Worker]',error));
-        const call=<T = any>(name: string, member: string, target: string,callbackId:string,once:boolean, args: any[]): T =>{
-            log('Main',name,member,target,callbackId,once,args);
-            mainPort.postMessage([name, member, target, callbackId, once, args] as SyncData);
-            Atomics.wait(lock, 0, 0);
-            const { message } = receiveMessageOnPort(mainPort) as {message:[boolean,any]};
+        const call=<T = any>(name: string, member: string, target: string,id:string,once:boolean, args: any[]): T =>{
+            log('Main',name,member,target,id,once,args);
+            const syncData={name, member, target, id, once, args} as SyncData;
+            let message:[boolean,any]=[null,null];
+            beforeHook('main',syncData,message);
+            if(message[0]==null){
+                mainPort.postMessage(syncData as SyncData);
+                Atomics.wait(lock, 0, 0);
+                message = receiveMessageOnPort(mainPort).message as [boolean,any];
+                afterHook('main',syncData,message);
+            }
+            
+
             const [fail,data]=message;
             if(fail){
                 log('MainFail',name,member,target,data);
@@ -136,15 +145,23 @@ export = (() => {
             }));
             workerPort.addEventListener('message', async (event: MessageEvent) => {
                 try {
-                    const [name, member, target, id, once, args] = event.data as SyncData;
-                    log('Call',name, member, target, id, once, args)
-                    const data = id != null ? await handler.call(once ? 'once' : 'async', target, name, member, id, args) : await handler.call('sync', target, name, member, args);
-                    workerPort.postMessage([false,data]);
-                    log('CallResult',name, member, target, data);
+                    let result:[boolean,any]=[null,null];
+                    await beforeHook('worker',event.data,result);
+                    if(result[0]==null){
+                        const {name, member, target, id, once, args} = event.data as SyncData;
+                        log('Call',name, member, target, id, once, args)
+                        const data = id != null ? await handler.call(once ? 'once' : 'async', target, name, member, id, args) : await handler.call('sync', target, name, member, args);
+                        result=[false,data] as [boolean,any];
+                        await afterHook('worker',event.data,result);
+                        log('CallResult',name, member, target, data);
+                    }
+                    workerPort.postMessage(result);
                 } catch (error) {
                     log('CallFail',event.data, error);
                     parentPort.emit('messageerror',error);
-                    workerPort.postMessage([true,error]);
+                    const result=[true,error] as [boolean,any];
+                    await afterHook('worker',event.data as SyncData,result);
+                    workerPort.postMessage(result);
                 }finally{
                     Atomics.notify(lock, 0);
                 }

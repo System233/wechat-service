@@ -1,0 +1,3559 @@
+// 
+// This file is decompiled by depbjs v0.0.5.
+// source: .\index.js
+// 
+syntax = "proto3";
+package alita;
+
+message AppMessageContent {
+    uint32 appMsgType = 1;
+    AppInfo appInfo = 2;
+    AppBrandMessage appBrandMsg = 3;
+    FileMessage fileMsg = 4;
+    UrlMessage urlMsg = 5;
+    AppEmojiMessage emojiMsg = 6;
+    QuoteMessage quoteMessage = 7;
+    RecordMessage recordMessage = 8;
+};
+
+message AppBrandMessage {
+    string title = 1;
+    string url = 2;
+    string weappUsername = 3;
+    string weappNickname = 4;
+    string weappPagePath = 5;
+    string weappAppId = 6;
+    uint32 weappVersionCode = 7;
+    uint32 weappShareType = 8;
+    string weappIconUrl = 9;
+    uint64 weappShareCount = 10;
+    string weappThumbPath = 11;
+};
+
+message FileMessage {
+    string title = 1;
+    string path = 2;
+    uint64 size = 3;
+    string md5 = 5;
+    string ext = 6;
+};
+
+message AppInfo {
+    uint32 version = 1;
+    string appName = 2;
+    uint32 isForceUpdate = 3;
+};
+
+message CommonFileInfo {
+    uint64 size = 1;
+    string md5 = 2;
+    string ext = 3;
+    string path = 4;
+    string title = 5;
+    uint32 thumbSize = 6;
+    uint32 thumbWidth = 7;
+    uint32 thumbHeight = 8;
+    string thumbMd5 = 9;
+    string thumbPath = 10;
+};
+
+message UrlMessage {
+    string title = 1;
+    string des = 2;
+    uint32 showType = 3;
+    uint32 soundType = 4;
+    string content = 5;
+    string contentAttr = 6;
+    string url = 7;
+    string lowUrl = 8;
+    MmReader mmReader = 9;
+    string thumbUrl = 10;
+    string templateId = 11;
+    string thumbPath = 12;
+};
+
+message MmReader {
+    Category category = 1;
+    Publisher publisher = 2;
+    string templateHeader = 3;
+    string templateDetail = 4;
+    uint32 forbidForward = 5;
+};
+
+message Category {
+    uint32 type = 1;
+    uint32 count = 2;
+    string name = 3;
+    TopNew topNew = 4;
+};
+
+message TopNew {
+    string cover = 1;
+    uint32 width = 2;
+    uint32 height = 3;
+    string digest = 4;
+};
+
+message Item {
+    uint32 itemShowType = 1;
+    string title = 2;
+    string url = 3;
+    string shortUrl = 4;
+    string longUrl = 5;
+    uint32 pubTime = 6;
+    string cover = 7;
+    string tweetId = 8;
+    string digest = 9;
+    uint32 fileId = 10;
+    string nativeUrl = 13;
+    uint32 delFlag = 14;
+    uint32 contentAttr = 15;
+    uint32 playLength = 16;
+    string playUrl = 17;
+    string player = 18;
+    uint32 templateOpType = 19;
+    string weappUsername = 20;
+    string weappPath = 21;
+    uint32 weappVersion = 22;
+    uint32 weappState = 23;
+    uint32 musicSource = 24;
+    uint32 picNum = 25;
+    uint32 showComplaintButton = 26;
+    string vid = 27;
+    string recommendation = 28;
+    string picUrls = 29;
+    uint32 commentTopicId = 30;
+    uint32 appMsgLikeType = 31;
+    uint32 videoWidth = 32;
+    uint32 videoHeight = 33;
+    uint32 isPaySubscribe = 34;
+    string cover_235_1 = 35;
+    string cover_1_1 = 36;
+    string cover_16_9 = 37;
+};
+
+message Source {
+    string name = 1;
+};
+
+message Style {
+    string topColor = 1;
+    string range = 2;
+    string font = 3;
+    string color = 4;
+};
+
+message Publisher {
+    string username = 1;
+    string nickname = 2;
+};
+
+message AppEmojiMessage {
+    CommonFileInfo fileInfo = 1;
+};
+
+message QuoteMessage {
+    string title = 1;
+    uint32 messageType = 2;
+    uint64 serverId = 3;
+    string fromUsername = 4;
+    string chatUsername = 5;
+    string displayName = 6;
+    string content = 7;
+    bytes byteContent = 8;
+    string messageSource = 9;
+    bytes byteMessageSource = 10;
+};
+
+message RecordMessage {
+    RecordInfo recordInfo = 1;
+};
+
+message RecordInfo {
+    uint32 fromScene = 1;
+    string favUsername = 2;
+    string title = 3;
+    string desc = 4;
+    string info = 5;
+    DataList dataList = 6;
+};
+
+message DataList {
+    
+};
+
+message DataItem {
+    uint32 dataType = 1;
+    string dataId = 2;
+    uint32 htmlId = 3;
+    string dataFmt = 4;
+    string sourceName = 5;
+    string sourceTime = 6;
+    string cdnDataUrl = 7;
+    string cdnDataKey = 8;
+    string dataSourcePath = 9;
+    string fullMd5 = 10;
+    string head256md5 = 11;
+    uint64 dataSize = 12;
+    string dataDesc = 13;
+    uint32 cdnEncryVer = 14;
+    uint32 duration = 15;
+    string srcChatName = 16;
+    uint32 srcMsgLocalId = 17;
+    uint64 srcMsgCreateTime = 18;
+    DataItemSource dataItemSource = 19;
+    RecordInfo recordInfo = 20;
+    LocItem locItem = 21;
+    string tpDataUrl = 22;
+    string tpAesKey = 23;
+    string tpAuthKey = 24;
+    string cdnThumbUrl = 25;
+    string cdnThumbKey = 26;
+    string tpThumbUrl = 27;
+    string tpThumbAesKey = 28;
+    uint64 thumbSize = 29;
+    string thumbFullMd5 = 30;
+    string thumbHead256md5 = 31;
+    string streamWebUrl = 32;
+    string streamDataUrl = 33;
+    string streamLowBandUrl = 34;
+    string dataExt = 35;
+    WebUrlItem webUrlItem = 36;
+    ProductItem productItem = 37;
+    TVItem tvItem = 38;
+    AppBrandItem appBrandItem = 39;
+    string link = 40;
+    string appId = 41;
+    string brandId = 42;
+    string dataTitle = 43;
+    string thumbSourcePath = 44;
+    string messageUuid = 45;
+    string mediaPath = 46;
+    string thumbPath = 47;
+};
+
+message DataItemSource {
+    string realChatName = 1;
+    string fromusr = 2;
+};
+
+message LocItem {
+    double lng = 1;
+    double lat = 2;
+    double scale = 3;
+    string label = 4;
+    string poiName = 5;
+};
+
+message WebUrlItem {
+    string title = 1;
+    string desc = 2;
+    string thumbUrl = 3;
+    string link = 4;
+};
+
+message ProductItem {
+    string title = 1;
+    string desc = 2;
+    string thumbUrl = 3;
+    string productInfo = 4;
+    string sellerName = 5;
+    string productUrl = 6;
+};
+
+message TVItem {
+    string title = 1;
+    string desc = 2;
+    string thumbUrl = 3;
+    string tvInfo = 4;
+};
+
+message AppBrandItem {
+    string username = 1;
+    string iconUrl = 2;
+    string pagePath = 3;
+    string type = 4;
+    string pkgType = 5;
+    string appId = 6;
+    string sourceDisplayName = 7;
+};
+
+message UploadLogInfo {
+    
+};
+
+message DynamicConfig {
+    string key = 1;
+    string value = 2;
+};
+
+message DynamicConfigList {
+    
+};
+
+message BuildInfo {
+    uint64 versionCode = 1;
+    string versionName = 2;
+    string buildTime = 3;
+    string gitHash = 4;
+    string gitBranch = 5;
+};
+
+message AlitaInfo {
+    BuildInfo buildInfo = 1;
+};
+
+message Avatar {
+    string filePath = 1;
+    uint32 outdated = 2;
+};
+
+message SKBuiltinBuffer_t {
+    uint32 iLen = 1;
+    bytes Buffer = 2;
+};
+
+message SKBuiltinString_t {
+    string String = 1;
+};
+
+message SKBuiltinUint32_t {
+    uint32 uiVal = 1;
+};
+
+message BaseRequest {
+    bytes SessionKey = 1;
+    uint32 Uin = 2;
+    bytes DeviceID = 3;
+    int32 ClientVersion = 4;
+    bytes DeviceType = 5;
+    uint32 Scene = 6;
+};
+
+message BaseResponse {
+    int32 Ret = 1;
+    SKBuiltinString_t ErrMsg = 2;
+};
+
+message UsernameList {
+    
+};
+
+message CmdIdList {
+    
+};
+
+message SetForegroundRequest {
+    bool isForeground = 1;
+};
+
+message SetForegroundResponse {
+    int32 errCode = 1;
+};
+
+message IsForegroundResponse {
+    bool isForeground = 1;
+};
+
+message GetNetworkStateResponse {
+    int32 state = 1;
+};
+
+message GetServerTimeResponse {
+    uint32 serverTime = 1;
+};
+
+message GetDynamicConfigResponse {
+    DynamicConfigList configList = 1;
+};
+
+message UploadLogRequest {
+    uint64 taskId = 1;
+    UploadLogInfo uploadInfo = 2;
+};
+
+message UploadLogProgress {
+    uint64 taskId = 1;
+    uint64 current = 2;
+    uint64 total = 3;
+};
+
+message UploadLogResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message CleanCacheRequest {
+    uint64 taskId = 1;
+    uint64 size = 2;
+};
+
+message CleanCacheResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 size = 4;
+};
+
+message GetCacheSizeResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 cacheSize = 4;
+};
+
+message NetworkStateChangeRequest {
+    int32 state = 1;
+};
+
+message ForegroundChangeRequest {
+    bool isForeground = 1;
+};
+
+message GetExtSpamInfoRequest {
+    int32 extInfoBits = 1;
+};
+
+message GetExtSpamInfoResponse {
+    bytes extSpamInfo = 1;
+};
+
+message DynamicConfigUpdateRequest {
+    DynamicConfigList configList = 1;
+};
+
+message GetInfoResponse {
+    AlitaInfo info = 1;
+};
+
+message GetUserListResponse {
+    UserList userList = 1;
+};
+
+message GetRecentUserResponse {
+    User user = 1;
+};
+
+message DeleteUserRequest {
+    string username = 1;
+};
+
+message DeleteUserResponse {
+    int32 errCode = 1;
+};
+
+message GetLoggedInUserProfileResponse {
+    UserProfile userProfile = 1;
+};
+
+message UpdateLoggedInUserProfileRequest {
+    uint64 taskId = 1;
+    UserProfile profile = 2;
+};
+
+message UpdateLoggedInUserProfileResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message UpdateLoggedInUserAvatarRequest {
+    uint64 taskId = 1;
+    string imagePath = 2;
+};
+
+message UpdateLoggedInUserAvatarResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message GetLoggedInUserQrCodeResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    string filePath = 4;
+};
+
+message UserUpdateRequest {
+    int32 opCode = 1;
+    User user = 2;
+};
+
+message LoggedInUserProfileUpdateRequest {
+    UserProfile userProfile = 1;
+};
+
+message AutoLoginRequest {
+    uint64 taskId = 1;
+    string username = 2;
+};
+
+message AutoLoginResponse {
+    uint64 taskId = 1;
+    UnifyError unifyError = 2;
+};
+
+message PushLoginRequest {
+    uint64 taskId = 1;
+    string username = 2;
+};
+
+message PushLoginResponse {
+    uint64 taskId = 1;
+    PushLoginExtInfo extInfo = 2;
+    UnifyError unifyError = 3;
+};
+
+message LoginByPasswordRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    string password = 3;
+};
+
+message LoginByPasswordResponse {
+    uint64 taskId = 1;
+    UnifyError unifyError = 2;
+};
+
+message GetLoginSmsCodeRequest {
+    uint64 taskId = 1;
+    string phoneNumber = 2;
+};
+
+message GetLoginSmsCodeResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message LoginBySmsCodeRequest {
+    uint64 taskId = 1;
+    string phoneNumber = 2;
+    string smsCode = 3;
+};
+
+message LoginBySmsCodeResponse {
+    uint64 taskId = 1;
+    UnifyError unifyError = 2;
+};
+
+message CancelLoginResponse {
+    int32 errCode = 1;
+};
+
+message GetLoginStateResponse {
+    int32 loginState = 1;
+};
+
+message CheckLoginQrCodeStateResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    int32 state = 4;
+    string nickname = 5;
+    string avatarPath = 6;
+    string avatarUrl = 7;
+    string username = 8;
+};
+
+message CheckBindQrCodeStateResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    int32 state = 4;
+    string nickname = 5;
+    string avatarPath = 6;
+    string avatarUrl = 7;
+    string username = 8;
+};
+
+message LogoutResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message GetLoginQrCodeResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    string qrcodePath = 4;
+    string qrcodeContent = 5;
+};
+
+message GetBindQrCodeRequest {
+    uint64 taskId = 1;
+    string ilinkId = 2;
+    string thirdToken = 3;
+    uint32 opCode = 4;
+};
+
+message GetBindQrCodeResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    string qrcodePath = 4;
+    string qrcodeContent = 5;
+};
+
+message LoginByLoginQrCodeResponse {
+    uint64 taskId = 1;
+    UnifyError unifyError = 2;
+};
+
+message LoginByBindQrCodeResponse {
+    uint64 taskId = 1;
+    UnifyError unifyError = 2;
+};
+
+message LoginStateChangeRequest {
+    int32 state = 1;
+    string nickname = 2;
+    string avatar = 3;
+    UnifyError errInfo = 4;
+};
+
+message LoginQrCodeStateChangeRequest {
+    int32 state = 1;
+    string nickname = 2;
+    string avatarPath = 3;
+    string avatarUrl = 4;
+    string username = 5;
+};
+
+message LoginAttrChangeRequest {
+    LoginAttr attr = 1;
+};
+
+message GetLoginAttrResponse {
+    LoginAttr attr = 1;
+};
+
+message SetPushAutoLoginStateRequest {
+    uint64 taskId = 1;
+    bool openOrClose = 2;
+};
+
+message SetPushAutoLoginStateResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message InitContactsProgress {
+    uint64 taskId = 1;
+    int32 progress = 2;
+};
+
+message InitContactsResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message GetInitStateResponse {
+    int32 state = 1;
+};
+
+message GetContactListResponse {
+    ContactList contactList = 1;
+};
+
+message GetContactRequest {
+    string username = 1;
+};
+
+message GetContactResponse {
+    Contact contact = 1;
+};
+
+message DeleteContactRequest {
+    uint64 taskId = 1;
+    string username = 2;
+};
+
+message DeleteContactResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message BatchUpdateContactRequest {
+    uint64 taskId = 1;
+};
+
+message BatchUpdateContactResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message UpdateContactRequest {
+    uint64 taskId = 1;
+    string username = 2;
+};
+
+message UpdateContactResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message RemarkContactRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    string remark = 3;
+};
+
+message RemarkContactResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message SetContactOnTopRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    bool isOntop = 3;
+};
+
+message SetContactOnTopResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message SetContactMuteRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    bool isMute = 3;
+};
+
+message SetContactMuteResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message GetVerifyContactRequest {
+    string username = 1;
+};
+
+message GetVerifyContactResponse {
+    VerifyContact verifyContact = 1;
+};
+
+message GetVerifyContactListRequest {
+    uint32 limit = 1;
+};
+
+message GetVerifyContactListResponse {
+    VerifyContactList verifyContactList = 1;
+};
+
+message GetVerifyContactSummaryResponse {
+    VerifyContactSummery verifyContactSummery = 1;
+};
+
+message ContactUpdateRequest {
+    int32 opCode = 1;
+    Contact contact = 2;
+};
+
+message NewVerifyRequest {
+    int32 opCode = 1;
+    VerifyContactSummery verifySummary = 2;
+};
+
+message VerifyContactUpdateRequest {
+    int32 opCode = 1;
+    VerifyContact verifyContact = 2;
+};
+
+message HandleVerifyRequest {
+    uint64 taskId = 1;
+    int32 opCode = 2;
+    string username = 3;
+};
+
+message HandleVerifyResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message SearchContactRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    int32 fromScene = 3;
+    int32 searchScene = 4;
+};
+
+message SearchContactResponse {
+    uint64 taskId = 1;
+    UnifyError errorInfo = 2;
+    SearchContactItemList itemList = 3;
+};
+
+message AddToContactRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    int32 addScene = 3;
+};
+
+message AddToContactResponse {
+    uint64 taskId = 1;
+    UnifyError errorInfo = 2;
+    string username = 3;
+};
+
+message SendAddContactRequestRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    int32 addScene = 3;
+    string verifyContent = 4;
+};
+
+message SendAddContactRequestResponse {
+    uint64 taskId = 1;
+    UnifyError errorInfo = 2;
+};
+
+message SendTextMessageRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    string content = 3;
+};
+
+message SendTextMessageResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 msgId = 4;
+};
+
+message SendImageMessageRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    string thumbnailPath = 3;
+    string mediaPath = 4;
+    bool isSendHd = 5;
+};
+
+message SendImageMessageResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 msgId = 4;
+};
+
+message SendVideoMessageRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    VideoInfo videoInfo = 3;
+    bool isSendHd = 4;
+};
+
+message SendVideoMessageResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 msgId = 4;
+};
+
+message SendVoiceMessageRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    string voiceFilePath = 3;
+    int32 format = 4;
+    uint32 voiceLength = 5;
+};
+
+message SendVoiceMessageResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 msgId = 4;
+};
+
+message SendEmojiMessageRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    string emojiMd5 = 3;
+};
+
+message SendEmojiMessageResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 msgId = 4;
+};
+
+message SendAppMessageRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    int32 type = 3;
+    bytes appMsgStr = 4;
+};
+
+message SendAppMessageResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 msgId = 4;
+};
+
+message ResendMessageRequest {
+    uint64 taskId = 1;
+    uint64 msgId = 2;
+};
+
+message ResendMessageResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 msgId = 4;
+};
+
+message ReloadMessageRequest {
+    uint64 taskId = 1;
+    uint64 msgId = 2;
+};
+
+message ReloadMessageResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 msgId = 4;
+};
+
+message CancelSendMessageRequest {
+    uint64 msgId = 1;
+};
+
+message CancelSendMessageResponse {
+    int32 errCode = 1;
+};
+
+message RecallMessageRequest {
+    uint64 taskId = 1;
+    uint64 msgId = 2;
+};
+
+message RecallMessageResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 msgId = 4;
+};
+
+message MessageUpdateRequest {
+    int32 opCode = 1;
+    uint64 msgId = 2;
+    Message newMsg = 3;
+};
+
+message MarkMessageHandledRequest {
+    uint64 msgId = 1;
+};
+
+message MarkMessageHandledResponse {
+    int32 errCode = 1;
+};
+
+message MarkMessageOpenedRequest {
+    uint64 msgId = 1;
+};
+
+message MarkMessageOpenedResponse {
+    int32 errCode = 1;
+};
+
+message MarkMessagesHandledRequest {
+    string username = 1;
+    uint64 startMsgId = 2;
+    uint64 createTime = 3;
+    int32 offset = 4;
+};
+
+message MarkMessagesHandledResponse {
+    uint32 errCode = 1;
+};
+
+message GetMessageListRequest {
+    string username = 1;
+    uint64 startMsgId = 2;
+    int32 offset = 3;
+    uint64 createTime = 4;
+    int32 orderType = 5;
+};
+
+message GetMessageListResponse {
+    MessageList msgList = 1;
+};
+
+message GetMessageList1Request {
+    string username = 1;
+    uint64 startMsgId = 2;
+    int32 offset = 3;
+    uint64 createTime = 4;
+    int32 orderType = 5;
+    int32 msgFlag = 6;
+    int32 msgStatus = 7;
+    int32 msgType = 8;
+};
+
+message GetMessageList1Response {
+    MessageList msgList = 1;
+};
+
+message GetMessageRequest {
+    uint64 msgId = 1;
+};
+
+message GetMessageResponse {
+    Message msg = 1;
+};
+
+message SearchMessageWithKeywordsRequest {
+    uint64 startMsgId = 2;
+    int32 offset = 3;
+};
+
+message SearchMessageWithKeywordsResponse {
+    MessageList msgList = 1;
+};
+
+message SearchMessageWithKeywords1Request {
+    string username = 1;
+    uint64 startMsgId = 3;
+    int32 offset = 4;
+};
+
+message SearchMessageWithKeywords1Response {
+    MessageList msgList = 1;
+};
+
+message SearchMessageWithKeywords2Request {
+    uint64 talkerId = 1;
+    uint64 startMsgId = 3;
+    int32 offset = 4;
+};
+
+message SearchMessageWithKeywords2Response {
+    MessageList msgList = 1;
+};
+
+message DeleteMessageRequest {
+    string username = 1;
+};
+
+message DeleteMessageResponse {
+    int32 errCode = 1;
+};
+
+message DeleteMessage1Request {
+    uint64 msgId = 1;
+};
+
+message DeleteMessage1Response {
+    int32 errCode = 1;
+};
+
+message DownloadMessageContentRequest {
+    uint64 taskId = 1;
+    uint64 msgId = 2;
+    int32 type = 3;
+};
+
+message DownloadMessageContentResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 msgId = 4;
+};
+
+message DownloadSubMessageContentRequest {
+    uint64 taskId = 1;
+    uint64 msgId = 2;
+    string dataId = 3;
+    int32 type = 4;
+};
+
+message DownloadSubMessageContentProgress {
+    uint64 taskId = 1;
+    int32 type = 2;
+    uint64 msgId = 3;
+    string dataId = 4;
+    uint64 current = 5;
+    uint64 total = 6;
+};
+
+message DownloadSubMessageContentResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 msgId = 4;
+    string dataId = 5;
+};
+
+message MessageNotifyRequest {
+    MessageNotify messageNotify = 1;
+};
+
+message MessageProgressRequest {
+    int32 type = 1;
+    uint64 msgId = 2;
+    uint64 current = 3;
+    uint64 total = 4;
+};
+
+message TransMessageRequest {
+    uint64 taskId = 1;
+    uint64 msgId = 2;
+};
+
+message TransMessageResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    uint64 msgId = 4;
+};
+
+message SyncConversationListRequest {
+    uint64 taskId = 1;
+    int32 syncAction = 2;
+    string conversationName = 3;
+};
+
+message SyncConversationListResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message SyncConversationSequenceResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message GetConversationListResponse {
+    ConversationList conversationList = 1;
+};
+
+message GetConversationRequest {
+    string username = 1;
+};
+
+message GetConversationResponse {
+    Conversation conversation = 1;
+};
+
+message DeleteConversationRequest {
+    string username = 1;
+    bool isDeleteMsg = 2;
+};
+
+message DeleteConversationResponse {
+    int32 errCode = 1;
+};
+
+message DeleteAllConversationsRequest {
+    bool isDeleteMsg = 1;
+};
+
+message DeleteAllConversationsResponse {
+    int32 errCode = 1;
+};
+
+message MarkConversationReadRequest {
+    string username = 1;
+    bool isCreate = 2;
+};
+
+message MarkConversationReadResponse {
+    int32 errCode = 1;
+};
+
+message MarkConversationUnreadRequest {
+    string username = 1;
+};
+
+message MarkConversationUnreadResponse {
+    int32 errCode = 1;
+};
+
+message MarkConversationRead1Request {
+    string username = 1;
+    uint32 msgReadCount = 2;
+    bool isCreate = 3;
+};
+
+message MarkConversationRead1Response {
+    int32 errCode = 1;
+};
+
+message SetConversationFlagsRequest {
+    string username = 1;
+    int32 flags = 2;
+};
+
+message SetConversationFlagsResponse {
+    int32 errCode = 1;
+};
+
+message ConversationUpdateRequest {
+    int32 opCode = 1;
+    string username = 2;
+    Conversation conversation = 3;
+};
+
+message ConversationListSyncUpdateRequest {
+    int32 syncAction = 1;
+};
+
+message EnterConversationRequest {
+    string conversationName = 1;
+    bool isUpdateSeq = 2;
+};
+
+message EnterConversation1Request {
+    string conversationName = 1;
+};
+
+message UpdateChatRoomMemberRequest {
+    uint64 taskId = 1;
+    string roomUsername = 2;
+};
+
+message UpdateChatRoomMemberResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    string roomUsername = 4;
+    ChatRoomMemberList chatRoomMemberList = 5;
+};
+
+message UpdateChatRoomDetailRequest {
+    uint64 taskId = 1;
+    string roomUsername = 2;
+};
+
+message UpdateChatRoomDetailResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    string roomUsername = 4;
+    ChatRoomDetail chatRoomDetail = 5;
+};
+
+message GetChatRoomMemberListRequest {
+    string roomUsername = 1;
+};
+
+message GetChatRoomMemberListResponse {
+    ChatRoomMemberList chatRoomMemberList = 1;
+};
+
+message GetChatRoomMemberRequest {
+    string roomUsername = 1;
+    string memberUsername = 2;
+};
+
+message GetChatRoomMemberResponse {
+    ChatRoomMember chatRoomMember = 1;
+};
+
+message GetChatRoomDetailRequest {
+    string roomUsername = 1;
+};
+
+message GetChatRoomDetailResponse {
+    ChatRoomDetail chatRoomDetail = 1;
+};
+
+message AddRoomMemberRequest {
+    uint64 taskId = 1;
+    string roomUsername = 2;
+};
+
+message AddRoomMemberResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message InviteRoomMemberRequest {
+    uint64 taskId = 1;
+    string roomUsername = 2;
+};
+
+message InviteRoomMemberResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message DeleteRoomMemberRequest {
+    uint64 taskId = 1;
+    string roomUsername = 2;
+};
+
+message DeleteRoomMemberResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message SetRoomAnnouncementRequest {
+    uint64 taskId = 1;
+    string roomUsername = 2;
+    string announcement = 3;
+};
+
+message SetRoomAnnouncementResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message CreateChatRoomRequest {
+    uint64 taskId = 1;
+};
+
+message CreateChatRoomResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    string roomUsername = 4;
+    UnverifyMemberList unverifyMembersList = 5;
+};
+
+message QuitChatRoomRequest {
+    uint64 taskId = 1;
+    string roomUsername = 2;
+};
+
+message QuitChatRoomResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    string roomUsername = 4;
+};
+
+message SetRoomMuteStatusRequest {
+    uint64 taskId = 1;
+    string roomUsername = 2;
+    bool isMute = 3;
+};
+
+message SetRoomMuteStatusResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message SetSelfDisplayNameRequest {
+    uint64 taskId = 1;
+    string roomUsername = 2;
+    string displayname = 3;
+};
+
+message SetSelfDisplayNameResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message SetRoomNickNameRequest {
+    uint64 taskId = 1;
+    string roomUsername = 2;
+    string nickname = 3;
+};
+
+message SetRoomNickNameResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message SetRoomInContactRequest {
+    uint64 taskId = 1;
+    string roomUsername = 2;
+    bool isInContact = 3;
+};
+
+message SetRoomInContactResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message SetDisplayNameVisibilityRequest {
+    uint64 taskId = 1;
+    string roomUsername = 2;
+    bool isVisible = 3;
+};
+
+message SetDisplayNameVisibilityResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message GetMemberContactRequest {
+    string username = 1;
+};
+
+message GetMemberContactResponse {
+    Contact contact = 1;
+};
+
+message UpdateMemberContactRequest {
+    uint64 taskId = 1;
+    string username = 2;
+};
+
+message UpdateMemberContactResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    Contact contact = 4;
+};
+
+message ChatRoomVersionUpdateRequest {
+    string roomUsername = 1;
+    uint32 roomDetailSvrVersion = 2;
+    uint32 roomMemberSvrVersion = 3;
+};
+
+message DownloadAvatarRequest {
+    uint64 taskId = 1;
+    string username = 2;
+    int32 type = 3;
+};
+
+message DownloadAvatarProgress {
+    uint64 taskId = 1;
+    uint64 current = 2;
+    uint64 total = 3;
+    string username = 4;
+    int32 type = 5;
+};
+
+message DownloadAvatarResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    string avatarPath = 4;
+    string username = 5;
+    int32 type = 6;
+};
+
+message GetAvatarPathRequest {
+    string username = 1;
+    int32 type = 2;
+};
+
+message GetAvatarPathResponse {
+    string avatarPath = 1;
+};
+
+message CancelDownloadAvatarRequest {
+    uint64 taskId = 1;
+};
+
+message CancelDownloadAvatarResponse {
+    int32 errCode = 1;
+};
+
+message GetAvatarRequest {
+    string username = 1;
+    int32 type = 2;
+};
+
+message GetAvatarResponse {
+    Avatar avatar = 1;
+};
+
+message AvatarUpdateRequest {
+    string username = 1;
+};
+
+message AudioFormatChangeRequest {
+    int32 sampleRate = 1;
+    int32 sampleLenInMs = 2;
+};
+
+message VoipStateChangeRequest {
+    int32 state = 1;
+};
+
+message VoipFinishRequest {
+    int32 finishType = 1;
+};
+
+message ReceiveInviteRequest {
+    string callFrom = 1;
+    int32 roomType = 2;
+};
+
+message CanAnswerVoipResponse {
+    bool canAnswerVoip = 1;
+};
+
+message CallRequest {
+    string callTo = 1;
+    string callFrom = 2;
+    int32 roomType = 3;
+};
+
+message AcceptRequest {
+    bool isOnlyAudio = 1;
+};
+
+message GetAudioDataRequest {
+    bytes pcmBuffer = 1;
+    uint32 getDataLen = 2;
+};
+
+message GetAudioDataResponse {
+    int32 int32 = 1;
+};
+
+message SendAudioDataRequest {
+    bytes pcmData = 1;
+    uint32 dataLen = 2;
+};
+
+message SendAudioDataResponse {
+    int32 int32 = 1;
+};
+
+message SendVideoDataRequest {
+    bytes videoData = 1;
+    uint32 dataLen = 2;
+    int32 width = 3;
+    int32 height = 4;
+    int32 format = 5;
+};
+
+message SendVideoDataResponse {
+    int32 int32 = 1;
+};
+
+message GetVideoDataRequest {
+    bytes pcmBuffer = 1;
+    int32 dataLen = 2;
+    int32 width = 3;
+    int32 height = 4;
+};
+
+message GetVideoDataResponse {
+    int32 int32 = 1;
+};
+
+message DownloadImageRequest {
+    uint64 taskId = 1;
+    CdnImageDownloadInfo cdnImageDownloadInfo = 2;
+};
+
+message DownloadImageProgress {
+    uint64 taskId = 1;
+    uint64 current = 2;
+    uint64 total = 3;
+};
+
+message DownloadImageResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    CdnImageDownloadInfo cdnImageDownloadInfo = 4;
+};
+
+message UploadImageRequest {
+    uint64 taskId = 1;
+    CdnImageUploadInfo cdnImageUploadInfo = 2;
+};
+
+message UploadImageProgress {
+    uint64 taskId = 1;
+    uint64 current = 2;
+    uint64 total = 3;
+};
+
+message UploadImageResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    CdnImageUploadInfo cdnImageUploadInfo = 4;
+};
+
+message DownloadFileRequest {
+    uint64 taskId = 1;
+    CdnFileInfo cdnFileInfo = 2;
+};
+
+message DownloadFileProgress {
+    uint64 taskId = 1;
+    uint64 current = 2;
+    uint64 total = 3;
+};
+
+message DownloadFileResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    CdnFileInfo cdnFileInfo = 4;
+};
+
+message EmojiUpdateRequest {
+    int32 opCode = 1;
+    int32 type = 2;
+};
+
+message GetCustomEmojiListResponse {
+    CustomEmojiList customEmojiList = 1;
+};
+
+message GetStoreEmojiListResponse {
+    StoreEmojiList storeEmojiList = 1;
+};
+
+message GetBuiltinEmojiListResponse {
+    BuiltinEmojiList builtinEmojiList = 1;
+};
+
+message EmojiOperationRequest {
+    uint64 taskId = 1;
+    int32 panelType = 2;
+    int32 opCode = 3;
+};
+
+message EmojiOperationResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message EmojiOperationCheckRequest {
+    int32 panelType = 1;
+    int32 opCode = 2;
+};
+
+message EmojiOperationCheckResponse {
+    bool isOperable = 1;
+};
+
+message GetEmojiMd5FromMessageRequest {
+    uint64 msgId = 1;
+};
+
+message GetEmojiMd5FromMessageResponse {
+    string md5 = 1;
+};
+
+message ReportKvDataRequest {
+    uint32 logId = 1;
+    string value = 2;
+    bool reportNow = 3;
+    bool isIgnoreFreqCheck = 4;
+};
+
+message ReportIdKeyDataRequest {
+    uint32 logId = 1;
+    uint32 key = 2;
+    uint32 value = 3;
+    bool isIgnoreFreqCheck = 4;
+};
+
+message SetDebugReportRequest {
+    bool debug = 1;
+};
+
+message GetInfo1Response {
+    WxcodepayInfo info = 1;
+};
+
+message GetBindStateResponse {
+    int32 state = 1;
+};
+
+message UnbindResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message StartBindResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+};
+
+message GetBindingCodeResponse {
+    string bindCode = 1;
+};
+
+message ShowPayCodeResponse {
+    WxcodepayPayCode payCode = 1;
+};
+
+message BindStateChangeRequest {
+    int32 state = 1;
+    int32 errCode = 2;
+};
+
+message ReceivePayMessageRequest {
+    WxcodepayPayMessage payMessage = 1;
+};
+
+message PayCodeUpdateRequest {
+    WxcodepayPayCode payCode = 1;
+};
+
+message BalanceUpdateRequest {
+    WxcodepayBalanceInfo balanceInfo = 1;
+};
+
+message GetBalanceInfoResponse {
+    WxcodepayBalanceInfo balanceInfo = 1;
+};
+
+message RefreshBalanceResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    WxcodepayBalanceInfo balanceInfo = 4;
+};
+
+message CreateTaskResponse {
+    uint64 taskId = 1;
+};
+
+message CancelTaskRequest {
+    uint64 taskId = 1;
+};
+
+message CancelTaskResponse {
+    int32 errCode = 1;
+};
+
+message ReceiveNotifyRequest {
+    uint32 cmdId = 1;
+    string body = 2;
+};
+
+message SendRequestRequest {
+    uint64 taskId = 1;
+    ExtensionRequest request = 2;
+};
+
+message SendRequestResponse {
+    uint64 taskId = 1;
+    uint32 cmdId = 2;
+    int32 errCode = 3;
+    bytes body = 4;
+};
+
+message CancelTask1Request {
+    uint64 taskId = 1;
+};
+
+message CancelTask1Response {
+    int32 errCode = 1;
+};
+
+message SubscribeNotifyCmdIdsRequest {
+    
+};
+
+message SubscribeNotifyCmdIdsResponse {
+    int32 errCode = 1;
+};
+
+message UnsubscribeNotifyCmdIdsRequest {
+    
+};
+
+message UnsubscribeNotifyCmdIdsResponse {
+    int32 errCode = 1;
+};
+
+message VoiceTranceRequest {
+    uint64 taskId = 1;
+    string voiceFilePath = 2;
+    int32 encodeType = 3;
+};
+
+message VoiceTranceResponse {
+    uint64 taskId = 1;
+    int32 errCode = 2;
+    string errMsg = 3;
+    string result = 4;
+};
+
+message ContextRequest {
+    string contextId = 1;
+};
+
+message InitRequest {
+    StartConfig config = 1;
+};
+
+message InitResponse {
+    int32 errCode = 1;
+};
+
+message UnInitResponse {
+    int32 errCode = 1;
+};
+
+enum AlitaEventType {
+    kNetworkStateChangeEvent = 0;
+    kForegroundChangeEvent = 1;
+    kGetExtSpamInfoEvent = 2;
+    kDynamicConfigUpdateEvent = 3;
+    kUserUpdateEvent = 4;
+    kLoggedInUserProfileUpdateEvent = 5;
+    kLoginStateChangeEvent = 6;
+    kLoginQrCodeStateChangeEvent = 7;
+    kLoginAttrChangeEvent = 8;
+    kContactUpdateEvent = 9;
+    kNewVerifyEvent = 10;
+    kVerifyContactUpdateEvent = 11;
+    kMessageUpdateEvent = 12;
+    kMessageNotifyEvent = 13;
+    kMessageProgressEvent = 14;
+    kConversationUpdateEvent = 15;
+    kConversationListSyncUpdateEvent = 16;
+    kEnterConversationEvent = 17;
+    kChatRoomVersionUpdateEvent = 18;
+    kAvatarUpdateEvent = 19;
+    kAudioFormatChangeEvent = 20;
+    kVoipStateChangeEvent = 21;
+    kVoipFinishEvent = 22;
+    kReceiveInviteEvent = 23;
+    kRemoteCloseCameraEvent = 24;
+    kCanAnswerVoipEvent = 25;
+    kEmojiUpdateEvent = 26;
+    kBindStateChangeEvent = 27;
+    kReceivePayMessageEvent = 28;
+    kPayCodeUpdateEvent = 29;
+    kBalanceUpdateEvent = 30;
+    kReceiveNotifyEvent = 31;
+};
+
+enum LogLevel {
+    kLogLevelAll = 0;
+    kLogLevelDebug = 1;
+    kLogLevelInfo = 2;
+    kLogLevelWarn = 3;
+    kLogLevelError = 4;
+    kLogLevelFatal = 5;
+    kLogLevelNone = 6;
+};
+
+enum PresetDebugIp {
+    kPresetDebugIpNone = 0;
+    kPresetDebugIpManual = 1;
+    kPresetDebugIp995 = 2;
+    kPresetDebugIpHK990 = 3;
+    kPresetDebugIp1001 = 4;
+    kPresetDebugIp1002 = 5;
+    kPresetDebugIpSZ1001 = 6;
+    kPresetDebugIpSZ1002 = 7;
+    kPresetDebugIpHK1001 = 8;
+    kPresetDebugIpHK1002 = 9;
+    kPresetDebugIpCA1001 = 10;
+    kPresetDebugIpCA1002 = 11;
+    kPresetDebugIp993 = 12;
+};
+
+enum DeviceTypeId {
+    kDeviceTypeIdUnknown = 0;
+    kDeviceTypeIdIphone = 1;
+    kDeviceTypeIdAndroid = 2;
+    kDeviceTypeIdS60V3 = 3;
+    kDeviceTypeIdS60V5 = 4;
+    kDeviceTypeIdWp7 = 5;
+    kDeviceTypeIdWebWx = 6;
+    kDeviceTypeIdBlackberry = 7;
+    kDeviceTypeIdWp8 = 8;
+    kDeviceTypeIdS40Asha = 9;
+    kDeviceTypeIdBlackberry10 = 10;
+    kDeviceTypeIdS40AshaV5 = 11;
+    kDeviceTypeIdAndroidLite = 12;
+    kDeviceTypeIdIpad = 13;
+    kDeviceTypeIdImac = 14;
+    kDeviceTypeIdWindows = 15;
+    kDeviceTypeIdDjj = 19;
+    kDeviceTypeIdAlbum = 24;
+    kDeviceTypeIdKidsWatch = 26;
+    kDeviceTypeIdAlitaCar = 30;
+    kDeviceTypeIdLinuxPC = 33;
+};
+
+enum NetworkPolicy {
+    kNetworkPolicyDefault = 0;
+    kNetworkPolicyShort = 1;
+    kNetworkPolicyLong = 2;
+    kNetworkPolicyBoth = 3;
+};
+
+enum LoginState {
+    kLoginStateIdle = 0;
+    kLoginStateLoggingIn = 1;
+    kLoginStateLoggedIn = 2;
+    kLoginStateLoggingOut = 3;
+    kLoginStateExpired = 4;
+    kLoginStateLoggedOut = 5;
+    kLoginStateKickedOut = 6;
+};
+
+enum AvatarImageType {
+    kAvatarImageTypeUnknown = 0;
+    kAvatarImageTypeSmall = 1;
+    kAvatarImageTypeHd = 2;
+};
+
+enum LoginQrCodeNotifyStatus {
+    kLoginQrCodeNotifyStatusWait = 0;
+    kLoginQrCodeNotifyStatusScaned = 1;
+    kLoginQrCodeNotifyStatusConfirmed = 2;
+    kLoginQrCodeNotifyStatusExpired = 3;
+    kLoginQrCodeNotifyStatusCancel = 4;
+    kLoginQrCodeNotifyStatusBluetoothScaned = 5;
+    kLoginQrCodeNotifyStatusBluetoothConfirmed = 6;
+    kLoginQrCodeNotifyStatusBluetoothLogin = 7;
+    kLoginQrCodeNotifyStatusBluetoothAutoAuthCheck = 8;
+    kLoginQrCodeNotifyStatusError = 9;
+    kLoginQrCodeNotifyStatusAlbumCheckBind = 10;
+};
+
+enum CommonOperation {
+    kCommonOperationAdd = 0;
+    kCommonOperationDelete = 1;
+    kCommonOperationUpdate = 2;
+};
+
+enum MessageFlag {
+    kMessageFlagNone = 0;
+    kMessageFlagSend = 1;
+    kMessageFlagReceive = 2;
+    kMessageFlagUnRead = 4;
+    kMessageFlagUnOpened = 8;
+};
+
+enum MessageStatus {
+    kMessageStatusUnknown = 0;
+    kMessageStatusNone = 1;
+    kMessageStatusSending = 2;
+    kMessageStatusSent = 3;
+    kMessageStatusReceiving = 4;
+    kMessageStatusReceived = 5;
+    kMessageStatusFail = 6;
+    kMessageStatusVoipAnswer = 7;
+    kMessageStatusVoipNoAnswer = 8;
+    kMessageStatusVoipFail = 9;
+    kMessageStatusProcessing = 10;
+};
+
+enum MessageDataType {
+    kMessageDataTypeUnknown = 0;
+    kMessageDataTypeText = 1;
+    kMessageDataTypeImg = 3;
+    kMessageDataTypePrivateMsgText = 11;
+    kMessageDataTypePrivateMsgImg = 13;
+    kMessageDataTypeChatRoomMsgText = 21;
+    kMessageDataTypeChatRoomMsgImg = 23;
+    kMessageDataTypeVoiceMsg = 34;
+    kMessageDataTypePushMail = 35;
+    kMessageDataTypeQMsg = 36;
+    kMessageDataTypeVerifyMsg = 37;
+    kMessageDataTypePushSystemMsg = 38;
+    kMessageDataTypeQQLiXianMsg = 39;
+    kMessageDataTypePossibleFriendMsg = 40;
+    kMessageDataTypePushSoftware = 41;
+    kMessageDataTypeShareCard = 42;
+    kMessageDataTypeVideo = 43;
+    kMessageDataTypeVideoIphoneExport = 44;
+    kMessageDataTypeGmailPushMail = 45;
+    kMessageDataTypeEmpty = 46;
+    kMessageDataTypeEmoji = 47;
+    kMessageDataTypeLocation = 48;
+    kMessageDataTypeAppMsg = 49;
+    kMessageDataTypeVoipMsg = 50;
+    kMessageDataTypeStatusNotify = 51;
+    kMessageDataTypeWeiboPush = 52;
+    kMessageDataTypeWebwxVoipNotify = 53;
+    kMessageDataTypeChatRoomVerifyMsg = 54;
+    kMessageDataTypeBrandQaAsk = 55;
+    kMessageDataTypeTalkSysMsg = 56;
+    kMessageDataTypeBrandQaMsg = 57;
+    kMessageDataTypeOpenSubscribe = 58;
+    kMessageDataTypeOpenReport = 59;
+    kMessageDataTypeOpenLink = 60;
+    kMessageDataTypeKF = 61;
+    kMessageDataTypeShortVideo = 62;
+    kMessageDataTypeSysCmdIpxx = 9998;
+    kMessageDataTypeSysNotice = 9999;
+    kMessageDataTypeSys = 10000;
+    kMessageDataTypeSysCmdXml = 10001;
+    kMessageDataTypeSysCmdNewXml = 10002;
+};
+
+enum ConversationSyncAction {
+    kConversationSyncActionNone = 0;
+    kConversationSyncActionAfterLogin = 1;
+    kConversationSyncActionAfterSleep = 2;
+    kConversationSyncActionLoadMore = 3;
+};
+
+enum ContactFlag {
+    kContactFlagNone = 0;
+    kContactFlagContact = 1;
+    kContactFlagChat = 2;
+    kContactFlagChatRoom = 4;
+    kContactFlagBlackList = 8;
+    kContactFlagDomain = 16;
+    kContactFlagHide = 32;
+    kContactFlagFavour = 64;
+    kContactFlag3RdApp = 128;
+    kContactFlagSnsBlackList = 256;
+    kContactFlagMute = 512;
+    kContactFlagUnDeliver = 1024;
+    kContactFlagTop = 2048;
+    kContactFlagAutoAdd = 4096;
+    kContactFlagTextTranslate = 8192;
+    kContactFlagFrozen = 16384;
+    kContactFlagWatchContact = 131072;
+};
+
+enum VoIPState {
+    kVoIPStateUnknown = 0;
+    kVoIPStateInited = 1;
+    kVoIPStateDialing = 2;
+    kVoIPStateIncoming = 3;
+    kVoIPStateWaitConnect = 4;
+    kVoIPStateConnected = 5;
+    kVoIPStateTalking = 6;
+};
+
+enum VoIPFinishType {
+    kVoIPFinishTypeNormal = 0;
+    kVoIPFinishTypeReject = 1;
+    kVoIPFinishTypeCancel = 2;
+    kVoIPFinishTypeRecvReject = 3;
+    kVoIPFinishTypeRecvShutDown = 4;
+    kVoIPFinishTypeBlock = 5;
+    kVoIPFinishTypeBusy = 6;
+    kVoIPFinishTypeNotFriend = 7;
+    kVoIPFinishTypeRecvCancel = 8;
+    kVoIPFinishTypeNotSupport = 9;
+    kVoIPFinishTypePluginClose = 10;
+    kVoIPFinishTypeTimeout = 11;
+    kVoIPFinishTypeUnknownError = 12;
+};
+
+enum AppMessageType {
+    kAppMessageTypeUnknown = 0;
+    kAppMessageTypeText = 1;
+    kAppMessageTypeImage = 2;
+    kAppMessageTypeMusic = 3;
+    kAppMessageTypeVideo = 4;
+    kAppMessageTypeUrl = 5;
+    kAppMessageTypeFile = 6;
+    kAppMessageTypeAppData = 7;
+    kAppMessageTypeEmoji = 8;
+    kAppMessageTypeProduct = 10;
+    kAppMessageTypeEmoticonGift = 11;
+    kAppMessageTypeDeviceAccess = 12;
+    kAppMessageTypeMallProduct = 13;
+    kAppMessageTypeOldTv = 14;
+    kAppMessageTypeEmoticonShared = 15;
+    kAppMessageTypeCardShare = 16;
+    kAppMessageTypeLocationShare = 17;
+    kAppMessageTypeRecord = 19;
+    kAppMessageTypeTv = 20;
+    kAppMessageTypeNote = 24;
+    kAppMessageTypeDesignerShared = 25;
+    kAppMessageTypeEmotionListShared = 26;
+    kAppMessageTypeEmojiListShared = 27;
+    kAppMessageTypeLocation = 30;
+    kAppMessageTypeAppBrand = 33;
+    kAppMessageTypeGiftCard = 34;
+    kAppMessageTypeSyncRecord = 35;
+    kAppMessageTypeOpenSdkAppBrand = 36;
+    kAppMessageTypeVideoFile = 38;
+    kAppMessageTypeGameVideoFile = 39;
+    kAppMessageTypeBusinessCard = 45;
+    kAppMessageTypeOpenSdkAppBrandWeishiVideo = 46;
+    kAppMessageTypeOpenSdkWeworkObject = 49;
+    kAppMessageTypeFinderNameCard = 50;
+    kAppMessageTypeFinderFeed = 51;
+    kAppMessageTypeFinderEndorsment = 52;
+    kAppMessageTypeSolitaire = 53;
+    kAppMessageTypeMpShareVideoAppMsg = 54;
+    kAppMessageTypeMsgQuote = 57;
+    kAppMessageTypeFinderTopic = 59;
+    kAppMessageTypeMegaVideoShare = 71;
+    kAppMessageTypeMmliveShare = 60;
+    kAppMessageTypePatMsg = 62;
+    kAppMessageTypeFinderLive = 63;
+    kAppMessageTypeFinderLiveBooking = 64;
+    kAppMessageTypeFinderLiveInvite = 65;
+    kAppMessageTypeGameLifeGift = 66;
+    kAppMessageTypeGameLifeCard = 69;
+    kAppMessageTypeLiteApp = 68;
+    kAppMessageTypeFinderColumnCard = 73;
+    kAppMessageTypeFinderFollowTopic = 72;
+    kAppMessageTypeFileUploading = 74;
+    kAppMessageTypeFinderAggregate = 75;
+    kAppMessageTypeMusicMv = 76;
+    kAppMessageTypeFestivalWish = 77;
+    kAppMessageTypeFinderServiceNotifyFollowLive = 80;
+    kAppMessageTypeFinderGuaranteeCertification = 81;
+    kAppMessageTypeFinderProduceShare = 82;
+    kAppMessageTypeTeenagerModeRequestBindGuardian = 83;
+    kAppMessageTypeTeenagerModeRequestAuthorization = 84;
+};
+
+enum AppBrandShareType {
+    kAppBrandShareTypeShareToFriendsNews = 0;
+    kAppBrandShareTypeShareToFriendsCard = 1;
+    kAppBrandShareTypePage = 2;
+    kAppBrandShareTypePageWithShareTicket = 3;
+};
+
+enum CdnFileType {
+    kMediaTypeAny = 0;
+    kMediaTypeFullSizeImage = 1;
+    kMediaTypeImage = 2;
+    kMediaTypeThumbImage = 3;
+    kMediaTypeVideo = 4;
+    kMediaTypeSCVideo = 54;
+    kMediaTypeFile = 5;
+    kMediaTypeTinyVideo = 6;
+    kMediaTypeBigFile = 7;
+    kMediaTypeBigFile_1G = 9;
+    kMediaTypeActivityFile = 10;
+    kMediaTypeBackupChatMsg = 14;
+    kMediaTypeBackupChatAudio = 15;
+    kMediaTypeWIMDownload = 19;
+    kMediaTypeSeeSeeVideo = 90;
+    kMediaTypeFavoriteFile = 10001;
+    kMediaTypeFavoriteVideo = 10002;
+    kMediaTypeFavoriteBigFile = 10007;
+    kMediaTypeExposeImage = 11000;
+    kMediaTypeBeatificFile = 10011;
+    kMediaTypeBackupFile = 20001;
+    kMediaTypeFriends = 20201;
+    kMediaTypeFriendsVideo = 20202;
+    kMediaTypeFriendsADImageThumb = 20204;
+    kMediaTypeFriendsImageThumb = 20205;
+    kMediaTypeFriendsVideoThumbImage = 20250;
+    kMediaTypeShop = 20301;
+    kMediaTypeNearEvent = 20310;
+    kMediaTypeSmartHwPage = 20321;
+    kMediaTypeAdVideo = 20210;
+    kMediaTypeAppVideo = 20302;
+    kMediaTypeAppFile = 20303;
+    kMediaTypeAppImageStorage = 20304;
+    kMediaTypeHWDevice = 20322;
+    kMediaTypeAppVideoThumb = 20350;
+    kMediaTypeEmojiNormal = 20401;
+    kMediaTypeEmojiGIF = 20402;
+    kMediaTypeEmojiWXAM = 20403;
+    kMediaLittleAppPacket = 30001;
+    kMediaGamePacket = 30002;
+    kMediaTinkerPatch = 30003;
+    kMediaXWebRuntime = 30004;
+    kMediaXWebRuntimePatch = 30005;
+    kMediaXWebConfig = 30006;
+    kMediaGeneralResource = 40001;
+    kMediaWAGameVideo = 50001;
+};
+
+enum MessageDownloadType {
+    kMessageDownloadTypeNone = 0;
+    kMessageDownloadTypeImageMessageThumb = 10;
+    kMessageDownloadTypeImageMessageMiddle = 11;
+    kMessageDownloadTypeImageMessageFullSize = 12;
+    kMessageDownloadTypeVoiceMessageVoice = 20;
+    kMessageDownloadTypeEmojiMessageEmoji = 30;
+    kMessageDownloadTypeVideoMessageThumb = 40;
+    kMessageDownloadTypeVideoMessageVideo = 41;
+    kMessageDownloadTypeAppMessageAppBrandThumb = 50;
+    kMessageDownloadTypeAppMessageFile = 51;
+    kMessageDownloadTypeAppMessageEmoji = 52;
+    kMessageDownloadTypeAppMessageUrlThumb = 53;
+    kMessageDownloadTypeAppMessageRecord = 54;
+};
+
+enum MessageDownloadGeneralType {
+    kMessageDownloadGeneralTypeGeneral = 0;
+    kMessageDownloadGeneralTypeNone = 1;
+};
+
+enum VoiceMessageMediaFormat {
+    kVoiceMessageMediaFormatAmr = 0;
+    kVoiceMessageMediaFormatSpeex = 1;
+    kVoiceMessageMediaFormatMp3 = 2;
+    kVoiceMessageMediaFormatWave = 3;
+    kVoiceMessageMediaFormatSilk = 4;
+};
+
+enum StatusNotifyMessageType {
+    kStatusNotifyMessageTypeUnknown = 0;
+    kStatusNotifyMessageTypeSendCommand = 11;
+};
+
+enum StatusNotifySendCommand {
+    kStatusNotifySendCommandUnknown = 0;
+    kStatusNotifySendCommandHandOffMaster = 1;
+};
+
+enum StatusNotifyHandOffDataType {
+    kStatusNotifyHandOffDataTypeUnknown = 0;
+    kStatusNotifyHandOffDataTypeFile = 1;
+    kStatusNotifyHandOffDataTypeUrl = 2;
+    kStatusNotifyHandOffDataTypeMiniProgram = 3;
+    kStatusNotifyHandOffDataTypeMiniGame = 4;
+    kStatusNotifyHandOffDataTypeWsVideoFlow = 5;
+};
+
+enum StatusNotifyHandOffType {
+    kStatusNotifyHandOffTypeUnknown = 0;
+    kStatusNotifyHandOffTypeHandOff = 1;
+    kStatusNotifyHandOffTypeFloatWindow = 2;
+};
+
+enum StatusNotifyHandOffOpCode {
+    kStatusNotifyHandOffOpCodeUnknown = 0;
+    kStatusNotifyHandOffOpCodeAdd = 1;
+    kStatusNotifyHandOffOpCodeDel = 2;
+    kStatusNotifyHandOffOpCodeMod = 3;
+    kStatusNotifyHandOffOpCodeAllList = 4;
+    kStatusNotifyHandOffOpCodeExpired = 5;
+    kStatusNotifyHandOffOpCodeGetAllList = 6;
+    kStatusNotifyHandOffOpCodeUploading = 7;
+    kStatusNotifyHandOffOpCodeUploadFailed = 8;
+    kStatusNotifyHandOffOpCodeCancelUpload = 9;
+};
+
+enum StatusNotifyHandOffFileStatus {
+    kStatusNotifyHandOffFileStatusUnknown = 0;
+    kStatusNotifyHandOffFileStatusDownloaded = 1;
+    kStatusNotifyHandOffFileStatusNotDownloaded = 2;
+    kStatusNotifyHandOffFileStatusExpired = 3;
+};
+
+enum StatusNotifyHandOffSource {
+    kStatusNotifyHandOffSourceUnknown = 0;
+    kStatusNotifyHandOffSourceMsg = 1;
+    kStatusNotifyHandOffSourceMessageFav = 2;
+};
+
+enum UsernameType {
+    kUsernameTypeUnknown = 0;
+    kUsernameTypeEncode = 1;
+    kUsernameTypeChatRoom = 2;
+    kUsernameTypeLbsRoom = 3;
+    kUsernameTypeGroupCard = 4;
+    kUsernameTypeQQContact = 5;
+    kUsernameTypeSXContact = 6;
+    kUsernameTypeBottleContact = 7;
+    kUsernameTypeFBFriend = 8;
+    kUsernameTypeBrandContact = 9;
+    kUsernameTypeOpenIMChatRoom = 10;
+    kUsernameTypeOpenIMContact = 11;
+};
+
+enum ChatRoomMemberFlag {
+    kChatRoomMemberFlagNone = 0;
+    kChatRoomMemberFlagDisplayName = 1;
+    kChatRoomMemberFlagUndeliver = 2;
+    kChatRoomMemberFlagInroomVerify = 4;
+    kChatRoomMemberFlagContact = 8;
+    kChatRoomMemberFlagOverhead = 16;
+};
+
+enum EmojiPanelType {
+    kEmojiPanelTypeCustomNormal = 0;
+    kEmojiPanelTypeCustomCapture = 1;
+    kEmojiPanelTypeStore = 2;
+    kEmojiPanelTypeSimilar = 3;
+    kEmojiPanelTypeBuiltin = 999;
+};
+
+enum EmojiType {
+    kEmojiTypeUnknown = 0;
+    kEmojiTypePng = 1;
+    kEmojiTypeGif = 2;
+    kEmojiTypeJpg = 3;
+    kEmojiTypeText = 4;
+    kEmojiTypeAppEmojiGif = 10;
+    kEmojiTypeAppEmojiJpg = 11;
+};
+
+enum OrderType {
+    kOrderTypeDefault = 0;
+    kOrderTypeDesc = 1;
+    kOrderTypeAsc = 2;
+};
+
+enum ContactAddScene {
+    kContactAddScenePassiveBase = 1000000;
+    kContactAddSceneSearchQQ = 1;
+    kContactAddSceneSearchEmail = 2;
+    kContactAddSceneSearchWeixin = 3;
+    kContactAddScenePfQQ = 4;
+    kContactAddScenePfEmail = 5;
+    kContactAddScenePfContact = 6;
+    kContactAddScenePfWeixin = 7;
+    kContactAddScenePfGroup = 8;
+    kContactAddScenePfUnknown = 9;
+    kContactAddScenePfMobile = 10;
+    kContactAddScenePfMobileEmail = 11;
+    kContactAddSceneViewQQ = 12;
+    kContactAddSceneViewMobile = 13;
+    kContactAddSceneChatroom = 14;
+    kContactAddSceneSearchPhone = 15;
+    kContactAddSceneCorpEmail = 16;
+    kContactAddSceneSendCard = 17;
+    kContactAddSceneLBS = 18;
+    kContactAddScenePfMobileReverse = 21;
+    kContactAddScenePfShakePhonePair = 22;
+    kContactAddScenePfShakePhoneGroup = 23;
+    kContactAddScenePfShakePhoneOppSex = 24;
+    kContactAddSceneBottle = 25;
+    kContactAddSceneShakeScene1 = 26;
+    kContactAddSceneShakeScene2 = 27;
+    kContactAddSceneShakeScene3 = 28;
+    kContactAddSceneShakeScene4 = 29;
+    kContactAddSceneQRCode = 30;
+    kContactAddSceneFacebook = 31;
+    kContactAddSceneSns = 32;
+    kContactAddSceneWeb = 33;
+    kContactAddSceneBrandQA = 34;
+    kContactAddSceneFuzzySearch = 35;
+    kContactAddSceneLogoWall = 36;
+    kContactAddSceneTimeLineBiz = 37;
+    kContactAddScenePromoteMsg = 38;
+    kContactAddSceneSearchBrandBrand = 39;
+    kContactAddScenePromoteBizCard = 41;
+    kContactAddSceneWebPageInside = 42;
+    kContactAddSceneWebPageTopButton = 43;
+    kContactAddSceneLBSRoom = 44;
+    kContactAddSceneScanImage = 45;
+    kContactAddSceneScanImageBook = 47;
+    kContactAddSceneRadarSearch = 48;
+    kContactAddSceneScanBarCode = 49;
+    kContactAddSceneRegAddMFriend = 52;
+    kContactAddSceneSearchBrandService = 53;
+    kContactAddSceneSearchBrandSubscr = 54;
+    kContactAddSceneRecommendBrand = 55;
+    kContactAddSceneInterestedBrand = 56;
+    kContactAddSceneFtsSearchBrand = 57;
+    kContactAddSceneViewGoogleContactList = 58;
+    kContactAddSceneViewGoogleContactAccount = 59;
+    kContactAddSceneViewGoogleContactAsyncRecommend = 60;
+    kContactAddSceneTv = 67;
+    kContactAddSceneSubscribeBizApp = 68;
+    kContactAddSceneSubscribeBizH5 = 69;
+    kContactAddSceneLinkedinContactList = 76;
+    kContactAddSceneFromTimeLineAdHeadImage = 78;
+    kContactAddSceneFromTimeLineAdNickname = 79;
+    kContactAddSceneFromTempSession = 81;
+    kContactAddSceneWebSearchRecommend = 85;
+    kContactAddSceneWechatoutContactList = 86;
+    kContactAddSceneWebSearchHomePage = 87;
+    kContactAddSceneWebSearchDetailPage = 88;
+    kContactAddSceneWebSearchRecommendHotWord = 89;
+    kContactAddSceneFromBizTimeLine = 90;
+    kContactAddSceneJsApiQuicklyAdd = 91;
+    kContactAddSceneFromTempSessionShakeTvHistory = 92;
+    kContactAddSceneFromTempSessionShakeTv = 93;
+    kContactAddSceneFromTempSessionShakeTvWeb = 94;
+    kContactAddSceneFriendReadAppMsgProfile = 95;
+    kContactAddSceneAccessVerify = 96;
+    kContactAddSceneBizFromMpDetailPage = 152;
+    kContactAddSceneBizFromMpPageMenu = 153;
+    kContactAddSceneBizFromWebViewTopBar = 154;
+    kContactAddSceneAddKidsShake = 155;
+    kContactAddSceneAddKidsGuardian = 156;
+    kContactAddSceneBizFromBrandRejectMsg = 158;
+    kContactAddSceneBizFromRecCard = 160;
+    kContactAddSceneBizFromMpVideo = 163;
+    kContactAddSceneBizFromWebViewMenuTop = 173;
+    kContactAddSceneBizFromUnFocuse = 174;
+    kContactAddSceneBizFromVideoFullScreen = 179;
+};
+
+enum UserAttrVerifyFlag {
+    kUserAttrVerifyFlagBiz = 1;
+    kUserAttrVerifyFlagFamous = 2;
+    kUserAttrVerifyFlagBizBig = 4;
+    kUserAttrVerifyFlagBizBrand = 8;
+    kUserAttrVerifyFlagBizVerified = 16;
+    kUserAttrVerifyFlagBizPersonalVerified = 64;
+};
+
+enum ContactVerifyOpCode {
+    kContactVerifyOpCodeMarkRead = 0;
+    kContactVerifyOpCodeMarkReadAll = 1;
+    kContactVerifyOpCodeAccept = 3;
+};
+
+enum VerifyContactState {
+    kContactVerifyStateUnread = 0;
+    kContactVerifyStatePending = 1;
+    kContactVerifyStateAccept = 2;
+};
+
+enum AccountType {
+    kAccountTypeUnknown = 0;
+    kAccountTypeNormal = 1;
+    kAccountTypeKid = 2;
+};
+
+enum SessionType {
+    kSessionTypeUnknown = 0;
+    kSessionTypeMain = 1;
+    kSessionTypeExt = 2;
+};
+
+enum ExtensionRequestFlag {
+    ExtensionRequestFlagFlowLimit = 1;
+    ExtensionRequestFlagFrequencyLimit = 2;
+};
+
+enum ProgressType {
+    kProgressTypeUnknown = 0;
+    kProgressTypeUpload = 1;
+    kProgressTypeDownload = 2;
+};
+
+enum ContactType {
+    kContactTypeUnknown = 0;
+    kContactTypeCommon = 1;
+    kContactTypeBusiness = 2;
+    kContactTypeChatRoom = 4;
+    kContactTypeSystem = 8;
+    kContactTypeSystemFunction = 16;
+    kContactTypeOpenIm = 32;
+    kContactTypeImChatRoom = 64;
+};
+
+enum VoipMessageState {
+    kVoipMessageStateUnknown = 0;
+    kVoipMessageStateFinish = 1;
+    kVoipMessageStateCancel = 2;
+    kVoipMessageStateReject = 3;
+    kVoipMessageStateNoResponse = 4;
+    kVoipMessageStateInterrupt = 5;
+};
+
+enum VoipMessageType {
+    kVoipMessageTypeUnknown = 0;
+    kVoipMessageTypeAudio = 1;
+    kVoipMessageTypeVideo = 2;
+};
+
+enum RecordFromScene {
+    kRecordFromSceneFromFav = 1;
+    kRecordFromSceneFromChat = 2;
+    kRecordFromSceneFromMsgList = 3;
+};
+
+enum FavDataType {
+    kFavDataTypeTxt = 1;
+    kFavDataTypeImg = 2;
+    kFavDataTypeVoice = 3;
+    kFavDataTypeVideo = 4;
+    kFavDataTypeWebPage = 5;
+    kFavDataTypeLoc = 6;
+    kFavDataTypeMusic = 7;
+    kFavDataTypeFile = 8;
+    kFavDataTypeBook = 9;
+    kFavDataTypeGoods = 10;
+    kFavDataTypeGeneralProduct = 11;
+    kFavDataTypeOldTv = 12;
+    kFavDataTypeCard = 13;
+    kFavDataTypeTV = 14;
+    kFavDataTypeSight = 15;
+    kFavDataTypeShardCard = 16;
+    kFavDataTypeRecord = 17;
+    kFavDataTypeNoteShare = 18;
+    kFavDataTypeWeApp = 19;
+    kFavDataTypeFinder = 22;
+    kFavDataTypeFinderLive = 23;
+};
+
+enum FavSourceType {
+    kFavSourceTypeChat = 1;
+    kFavSourceTypeWC = 2;
+    kFavSourceTypeWebPage = 3;
+    kFavSourceType3rd = 4;
+    kFavSourceTypeShake = 5;
+    kFavSourceTypePost = 6;
+    kFavSourceTypeFTN = 7;
+    kFavSourceTypeScan = 8;
+    kFavSourceTypeMail = 9;
+    kFavSourceTypeBanner = 10;
+    kFavSourceTypeGeneralProductDetail = 11;
+    kFavSourceTypeCard = 12;
+    kFavSourceType3rdShare = 13;
+    kFavSourceTypeSingleChat = 21;
+    kFavSourceTypeChatroom = 22;
+    kFavSourceTypeBIZ = 23;
+    kFavSourceTypeGameCenter = 24;
+    kFavSourceTypeTopStory = 25;
+    kFavSourceTypeWebSearch = 26;
+    kFavSourceTypeWwbPageSingleChat = 27;
+    kFavSourceTypeWebPageChatroom = 28;
+    kFavSourceTypeWebPageBIZ = 29;
+    kFavSourceTypeConvertToNote = 30;
+};
+
+enum CustomMenuType {
+    kCustomMenuTypeShowSubMenu = 0;
+    kCustomMenuTypeReportClick = 1;
+    kCustomMenuTypeJump2WebView = 2;
+    kCustomMenuTypeShowInputMode = 3;
+    kCustomMenuTypeClientAction = 4;
+    kCustomMenuTypeOpenWeApp = 5;
+};
+
+enum MMBizInteractiveMode {
+    kMMBizInteractiveModeComm = 0;
+    kMMBizInteractiveModeQuestion = 1;
+    kMMBizInteractiveModeSelfMenu = 2;
+};
+
+enum EmojiGameExtType {
+    kEmojiGameExtTypeNone = 0;
+    kEmojiGameExtTypeJsb = 1;
+    kEmojiGameExtTypeDice = 2;
+};
+
+enum EmojiGameExtContent {
+    kEmojiGameExtContentNone = 0;
+    kEmojiGameExtContentJsbJ = 1;
+    kEmojiGameExtContentJsbS = 2;
+    kEmojiGameExtContentJsbB = 3;
+    kEmojiGameExtContentDice1 = 4;
+    kEmojiGameExtContentDice2 = 5;
+    kEmojiGameExtContentDice3 = 6;
+    kEmojiGameExtContentDice4 = 7;
+    kEmojiGameExtContentDice5 = 8;
+    kEmojiGameExtContentDice6 = 9;
+};
+
+enum UnifyErrorShowType {
+    kUnifyErrorShowTypeNone = 0;
+    kUnifyErrorShowTypeMsgBox = 1;
+    kUnifyErrorShowTypeTxtStripe = 2;
+    kUnifyErrorShowTypeYesNo = 3;
+    kUnifyErrorShowTypeConfirm = 4;
+    kUnifyErrorShowTypeLabel = 5;
+    kUnifyErrorShowTypeClient = 6;
+    kUnifyErrorShowTypeMax = 7;
+};
+
+enum UnifyErrorAction {
+    kUnifyErrorActionNone = 0;
+    kUnifyErrorActionOpenUrl = 1;
+    kUnifyErrorActionIgnore = 2;
+    kUnifyErrorActionFalseLast = 4;
+    kUnifyErrorActionFalseCancel = 5;
+    kUnifyErrorActionMax = 6;
+};
+
+message UnifyError {
+    int32 type = 1;
+    int32 action = 2;
+    string content = 3;
+    uint32 displaySec = 4;
+    string title = 5;
+    string url = 6;
+    int32 errorType = 7;
+    int32 errorCode = 8;
+};
+
+message User {
+    uint64 id = 1;
+    string username = 2;
+    string nickname = 3;
+    string avatarPath = 4;
+    string avatarUrl = 5;
+    uint32 status = 6;
+    uint32 loginType = 7;
+    uint64 updateTime = 8;
+    uint64 uin = 9;
+    uint32 accountType = 10;
+    uint32 sessionType = 11;
+};
+
+message UserList {
+    
+};
+
+message UserProfile {
+    ModUserInfo UserInfo = 1;
+    UserInfoExt UserInfoExt = 2;
+};
+
+message PatternLockInfo {
+    uint32 PatternVersion = 1;
+    SKBuiltinBuffer_t Sign = 2;
+    uint32 LockStatus = 3;
+};
+
+message SafeDevice {
+    string Name = 1;
+    string Uuid = 2;
+    string DeviceType = 3;
+    uint32 CreateTime = 4;
+};
+
+message SafeDeviceList {
+    uint32 Count = 1;
+};
+
+message SnsUserInfo {
+    uint32 SnsFlag = 1;
+    string SnsBGImgID = 2;
+    uint64 SnsBGObjectID = 3;
+    uint32 SnsFlagEx = 4;
+};
+
+message UserInfoExt {
+    SnsUserInfo SnsUserInfo = 1;
+    string MyBrandList = 2;
+    string MsgPushSound = 3;
+    string VoipPushSound = 4;
+    uint32 BigChatRoomSize = 5;
+    uint32 BigChatRoomQuota = 6;
+    uint32 BigChatRoomInvite = 7;
+    string SafeMobile = 8;
+    string BigHeadImgUrl = 9;
+    string SmallHeadImgUrl = 10;
+    uint32 MainAcctType = 11;
+    SKBuiltinString_t ExtXml = 12;
+    SafeDeviceList SafeDeviceList = 13;
+    uint32 SafeDevice = 14;
+    uint32 GrayscaleFlag = 15;
+    string GoogleContactName = 16;
+    string IDCardNum = 17;
+    string RealName = 18;
+    string RegCountry = 19;
+    string BBPPID = 20;
+    string BBPIN = 21;
+    string BBMNickName = 22;
+    LinkedinContactItem LinkedinContactItem = 23;
+    string KFInfo = 24;
+    PatternLockInfo PatternLockInfo = 25;
+    string SecurityDeviceId = 26;
+    uint32 PayWalletType = 27;
+    string WeiDianInfo = 28;
+};
+
+message ModUserInfo {
+    uint32 BitFlag = 1;
+    SKBuiltinString_t UserName = 2;
+    SKBuiltinString_t NickName = 3;
+    uint32 BindUin = 4;
+    SKBuiltinString_t BindEmail = 5;
+    SKBuiltinString_t BindMobile = 6;
+    uint32 Status = 7;
+    uint32 ImgLen = 8;
+    bytes ImgBuf = 9;
+    int32 Sex = 10;
+    string Province = 11;
+    string City = 12;
+    string Signature = 13;
+    uint32 PersonalCard = 14;
+    DisturbSetting DisturbSetting = 15;
+    uint32 PluginFlag = 16;
+    uint32 VerifyFlag = 17;
+    string VerifyInfo = 18;
+    int32 Point = 19;
+    int32 Experience = 20;
+    int32 Level = 21;
+    int32 LevelLowExp = 22;
+    int32 LevelHighExp = 23;
+    string Weibo = 24;
+    uint32 PluginSwitch = 25;
+    GmailList GmailList = 26;
+    string Alias = 27;
+    string WeiboNickname = 28;
+    uint32 WeiboFlag = 29;
+    uint32 FaceBookFlag = 30;
+    uint64 FBUserID = 31;
+    string FBUserName = 32;
+    int32 AlbumStyle = 33;
+    int32 AlbumFlag = 34;
+    string AlbumBGImgID = 35;
+    uint32 TXNewsCategory = 36;
+    string FBToken = 37;
+    string Country = 38;
+};
+
+message DisturbTimeSpan {
+    uint32 BeginTime = 1;
+    uint32 EndTime = 2;
+};
+
+message DisturbSetting {
+    uint32 NightSetting = 1;
+    DisturbTimeSpan NightTime = 2;
+    uint32 AllDaySetting = 3;
+    DisturbTimeSpan AllDayTime = 4;
+};
+
+message GmailInfo {
+    string GmailAcct = 1;
+    uint32 GmailSwitch = 2;
+    uint32 GmailErrCode = 3;
+};
+
+message GmailList {
+    uint32 Count = 1;
+};
+
+message LinkedinContactItem {
+    string LinkedinName = 1;
+    string LinkedinMemberID = 2;
+    string LinkedinPublicUrl = 3;
+};
+
+message AdditionalContactList {
+    LinkedinContactItem LinkedinContactItem = 1;
+};
+
+message Contact {
+    uint64 id = 1;
+    string username = 2;
+    string alias = 3;
+    string nickname = 4;
+    string pyinitial = 5;
+    string pyquan = 6;
+    string remark = 7;
+    string remarkInitial = 8;
+    string remarkPyquan = 9;
+    string encryptUsername = 10;
+    string contactLabelIds = 11;
+    uint32 type = 12;
+    uint32 flag = 13;
+    uint32 flagMask = 14;
+    uint32 verifyFlag = 15;
+    uint32 deleteFlag = 16;
+    uint32 chatroomFlag = 17;
+    uint32 showHead = 18;
+    string province = 19;
+    string city = 20;
+    string country = 21;
+    uint32 sex = 22;
+    uint32 source = 23;
+    string domainList = 24;
+    string ticket = 25;
+    uint32 descWordingId = 26;
+    string openImAppid = 27;
+    uint32 imgFlag = 28;
+    string hdAvatarUrl = 29;
+    string avatarUrl = 30;
+    string avatarMd5 = 31;
+    string defaultName = 32;
+    string signature = 33;
+    string verifyInfo = 35;
+};
+
+message ContactList {
+    
+};
+
+message VerifyContact {
+    string username = 1;
+    string nickname = 2;
+    string alias = 3;
+    string avatarUrl = 4;
+    string bigAvatarUrl = 5;
+    string fullPy = 6;
+    string shortPy = 7;
+    string content = 8;
+    uint64 createTime = 9;
+    uint64 updateTime = 10;
+    uint32 state = 11;
+    uint32 scene = 12;
+    string country = 13;
+    string province = 14;
+    string city = 15;
+    string sign = 16;
+    uint32 sex = 17;
+    uint32 opcode = 18;
+    string chatroomUsername = 19;
+    string sourceUsername = 20;
+    string sourceNickname = 21;
+    string shareCardUsername = 22;
+    string shareCardNickname = 23;
+};
+
+message VerifyContactSummery {
+    uint32 unreadCount = 1;
+};
+
+message VerifyContactList {
+    
+};
+
+message CustomizedInfo {
+    uint32 BrandFlag = 1;
+    string ExternalInfo = 2;
+    string BrandInfo = 3;
+    string BrandIconURL = 4;
+};
+
+message SearchContactItem {
+    SKBuiltinString_t UserName = 1;
+    SKBuiltinString_t NickName = 2;
+    SKBuiltinString_t PYInitial = 3;
+    SKBuiltinString_t QuanPin = 4;
+    int32 Sex = 5;
+    SKBuiltinBuffer_t ImgBuf = 6;
+    string Province = 7;
+    string City = 8;
+    string Signature = 9;
+    uint32 PersonalCard = 10;
+    uint32 VerifyFlag = 11;
+    string VerifyInfo = 12;
+    string Weibo = 13;
+    string Alias = 14;
+    string WeiboNickname = 15;
+    uint32 WeiboFlag = 16;
+    int32 AlbumStyle = 17;
+    int32 AlbumFlag = 18;
+    string AlbumBGImgID = 19;
+    SnsUserInfo SnsUserInfo = 20;
+    string Country = 21;
+    string MyBrandList = 22;
+    CustomizedInfo CustomizedInfo = 23;
+    string BigHeadImgUrl = 24;
+    string SmallHeadImgUrl = 25;
+    string AntispamTicket = 26;
+    uint32 MatchType = 27;
+};
+
+message SearchContactItemList {
+    
+};
+
+enum SearchContactFromScene {
+    kSearchContactFromSceneScanQrcodeNormal = 1;
+    kSearchContactFromSceneScanQrcodeHoldDownImage = 2;
+};
+
+enum SearchContactScene {
+    kSearchContactSceneUnknown = 0;
+    kSearchContactSceneAddFriend = 1;
+    kSearchContactSceneGetA8Key = 2;
+    kSearchContactSceneGlobalSearch = 3;
+    kSearchContactSceneWebviewAddBiz = 4;
+    kSearchContactSceneUserQrcode = 5;
+};
+
+message Conversation {
+    uint64 seq = 1;
+    string conversationName = 2;
+    string nickname = 3;
+    string remark = 4;
+    string msgUsername = 5;
+    uint32 chatMode = 6;
+    uint32 status = 7;
+    uint32 msgType = 8;
+    uint32 flag = 9;
+    uint32 attrFlag = 10;
+    uint32 showTips = 11;
+    string content = 12;
+    string msgDigest = 13;
+    uint32 msgCount = 14;
+    uint32 atCount = 15;
+    uint64 conversationTime = 16;
+    string customNotify = 17;
+    string parentRef = 18;
+    string editingMsg = 19;
+    uint32 editingQuoteMsgId = 20;
+    uint32 unreadCount = 21;
+    uint32 unreadMuteCount = 22;
+    uint32 lastSeq = 23;
+    uint32 firstUndeliverSeq = 24;
+    uint64 changeTime = 25;
+    string hdAvatarUrl = 26;
+    string avatarUrl = 27;
+    string defaultname = 28;
+    string chatroomMemberUsername = 29;
+};
+
+message ConversationList {
+    
+};
+
+message CdnImageDownloadInfo {
+    uint32 fileType = 1;
+    string aesKey = 2;
+    uint32 encryVer = 3;
+    string imgUrl = 4;
+    string thumbAesKey = 5;
+    string imgMd5 = 6;
+    uint32 imgSize = 7;
+    string imgPath = 8;
+    uint64 msgLocalId = 9;
+    uint64 msgSvrId = 10;
+    string toUsername = 11;
+    string fromUsername = 12;
+    uint64 createTime = 13;
+};
+
+message CdnImageUploadInfo {
+    uint32 fileType = 1;
+    string normalPath = 2;
+    string thumbPath = 3;
+    string midPath = 4;
+    uint64 msgLocalId = 5;
+    uint64 msgSvrId = 6;
+    string toUsername = 7;
+    string fromUsername = 8;
+    uint64 createTime = 9;
+    string aesKey = 10;
+    string fileId = 11;
+    uint32 fileLength = 12;
+    string fileMd5 = 13;
+    uint32 midLength = 14;
+    string midMd5 = 15;
+    string thumbUrl = 16;
+    uint32 thumbLength = 17;
+    string thumbMd5 = 18;
+    string thumbAesKey = 19;
+};
+
+message CdnFileInfo {
+    string fileUrl = 1;
+    string filePath = 2;
+    uint32 fileType = 3;
+    string aesKey = 4;
+    uint32 totalLength = 5;
+    uint64 msgLocalId = 6;
+    uint64 msgSvrId = 7;
+    string fromUsername = 8;
+    string toUsername = 9;
+};
+
+message MessageNotify {
+    string content = 1;
+    string nickname = 2;
+    uint64 msgId = 3;
+    uint32 msgType = 4;
+    uint64 msgCreateTime = 5;
+    string avatarUrl = 6;
+    string avatarPath = 7;
+    string fromUsername = 8;
+    uint32 contactType = 9;
+};
+
+message Message {
+    uint64 id = 1;
+    uint64 msgid = 2;
+    uint64 msgSvrid = 3;
+    uint64 newMsgid = 4;
+    uint32 msgType = 5;
+    uint32 status = 6;
+    uint32 flag = 7;
+    uint64 createTime = 8;
+    string fromUsername = 9;
+    string toUsername = 10;
+    string chatroomMemberUsername = 11;
+    string content = 12;
+    bytes byteContent = 13;
+    string conversationName = 14;
+    uint64 talkerId = 15;
+    uint64 msgSeq = 16;
+    string thumbPath = 17;
+    string mediaPath = 18;
+    string rawMediaPath = 19;
+    uint32 mediaLen = 20;
+    uint32 mediaFormat = 21;
+    string transContent = 22;
+    string transBrandWording = 23;
+    string bizClientMsgid = 24;
+    uint32 bizChatid = 25;
+    string bizChatUserid = 26;
+};
+
+message MessageList {
+    
+};
+
+message ImageMessageContent {
+    string md5 = 1;
+    uint32 thumbLength = 2;
+    uint32 thumbHeight = 3;
+    uint32 thumbWidth = 4;
+    uint32 imageLength = 5;
+    uint32 rawImageLength = 6;
+};
+
+message VerifyMessageContent {
+    string fromUsername = 1;
+    string encryptUsername = 2;
+    string fromNickname = 3;
+    string content = 4;
+    string fullPy = 5;
+    string shortPy = 6;
+    uint32 imageStatus = 7;
+    uint32 scene = 8;
+    string country = 9;
+    string province = 10;
+    string city = 11;
+    string sign = 12;
+    uint32 percard = 13;
+    uint32 sex = 14;
+    string alias = 15;
+    uint32 albumFlag = 16;
+    uint32 albumStyle = 17;
+    string albumBgImgId = 18;
+    uint32 snsFlag = 19;
+    string snsBgImgId = 20;
+    uint64 snsBgObjectId = 21;
+    string mHash = 22;
+    string mFullHash = 23;
+    string bigHeadimgUrl = 24;
+    string smallHeadimgUrl = 25;
+    string ticket = 26;
+    uint32 opcode = 27;
+    string qrTicket = 28;
+    string chatroomUsername = 29;
+    string sourceUsername = 30;
+    string sourceNickname = 31;
+    string shareCardUsername = 32;
+    string shareCardNickname = 33;
+    uint32 cardVersion = 34;
+};
+
+message VerifyMessageContentList {
+    
+};
+
+message LocationMessageContent {
+    double x = 1;
+    double y = 2;
+    uint32 scale = 3;
+    string label = 4;
+    string mapType = 5;
+    string poiName = 6;
+    string poiId = 7;
+};
+
+message VideoMessageContent {
+    string md5 = 1;
+    string newMd5 = 2;
+    uint32 playLength = 3;
+    uint32 thumbLength = 4;
+    uint32 thumbHeight = 5;
+    uint32 thumbWidth = 6;
+    uint32 videoLength = 7;
+    uint32 isAd = 8;
+};
+
+message VideoInfo {
+    string videoFilePath = 1;
+    string videoThumbFilePath = 2;
+    uint32 playLength = 3;
+    uint32 videoLength = 7;
+    uint32 thumbLength = 4;
+    uint32 thumbHeight = 5;
+    uint32 thumbWidth = 6;
+};
+
+message EmojiGameExt {
+    int32 type = 1;
+    int32 content = 2;
+};
+
+message EmojiMessageContent {
+    string md5 = 1;
+    uint32 type = 2;
+    uint32 fileLength = 3;
+    uint32 width = 4;
+    uint32 height = 5;
+    string productId = 6;
+    string designerId = 7;
+    EmojiGameExt gameExt = 8;
+};
+
+message VoipMessageContent {
+    uint32 voipType = 1;
+    uint32 time = 2;
+    uint32 state = 3;
+    int32 errorCode = 4;
+};
+
+message PushMailContact {
+    string name = 1;
+    string addr = 2;
+};
+
+message PushMailContactList {
+    
+};
+
+message PushMailMessageContent {
+    string subject = 1;
+    bool hasAttachment = 2;
+    string sender = 3;
+    string digest = 4;
+    string date = 5;
+    PushMailContactList fromList = 6;
+    PushMailContactList toList = 7;
+    PushMailContactList ccList = 8;
+    string mailid = 9;
+    string waplink = 10;
+};
+
+message SystemMessageTemplateMember {
+    string username = 1;
+    string nickname = 2;
+};
+
+message SystemMessageTemplateLink {
+    string name = 1;
+    string type = 2;
+    string separator = 4;
+    uint32 hidden = 5;
+    string title = 6;
+};
+
+message SystemMessageTemplate {
+    string contentType = 1;
+    string plain = 2;
+    string template = 3;
+};
+
+message PatMessageTemplate {
+    string fromUsername = 1;
+    string chatUsername = 2;
+    string pattedUsername = 3;
+    string patSuffix = 4;
+    uint32 patSuffixVersion = 5;
+    string template = 6;
+};
+
+message SystemCmdNewXmlMessage {
+    string type = 1;
+    SystemMessageTemplate systemMessageTemplate = 2;
+    PatMessageTemplate pat = 3;
+};
+
+message ChatRoomDetail {
+    string username = 1;
+    string nickName = 2;
+    string remarkname = 3;
+    string announcement = 4;
+    string announcementEditor = 5;
+    uint64 announcementPublishTime = 6;
+    string owner = 7;
+    uint32 maxCount = 8;
+    uint32 type = 9;
+    uint32 status = 10;
+    uint32 svrVersion = 11;
+    uint32 clientVersion = 12;
+};
+
+message ChatRoomMember {
+    string username = 1;
+    string nickName = 2;
+    string displayName = 3;
+    string hdAvatarUrl = 4;
+    string avatarUrl = 5;
+    uint32 memberFlag = 6;
+};
+
+message ChatRoomMemberList {
+    uint32 infoMask = 2;
+    uint32 clientVersion = 3;
+    uint32 svrVersion = 4;
+};
+
+message UnverifyMemberList {
+    
+};
+
+message UnverifyMember {
+    string username = 1;
+    uint32 memberStatus = 2;
+    string nickname = 3;
+    string pyinitial = 4;
+    string pyquan = 5;
+    int32 sex = 6;
+    string remark = 7;
+    string remarkInitial = 8;
+    string remarkPyquan = 9;
+    string encryptUsername = 10;
+    uint32 contactType = 11;
+    string province = 12;
+    string city = 13;
+    string signature = 14;
+    uint32 personalCard = 15;
+    uint32 verifyFlag = 16;
+    string verifyInfo = 17;
+    string country = 18;
+};
+
+message Desc {
+    string Lang = 1;
+    string Desc = 2;
+};
+
+message StoreEmoji {
+    string md5 = 1;
+    int32 type = 2;
+    string thumbPath = 3;
+    string path = 4;
+};
+
+message StoreEmojiPack {
+    string productId = 1;
+    string name = 2;
+    string panelUrl = 3;
+    string iconUrl = 4;
+};
+
+message StoreEmojiList {
+    
+};
+
+message CustomEmoji {
+    string md5 = 1;
+    string productId = 2;
+    int32 type = 3;
+    string thumbPath = 4;
+    string path = 5;
+};
+
+message CustomEmojiList {
+    
+};
+
+message BuiltinEmoji {
+    string md5 = 1;
+    string path = 2;
+    string thumbPath = 3;
+};
+
+message BuiltinEmojiList {
+    
+};
+
+message GameEmoji {
+    string md5 = 1;
+    int32 type = 2;
+    string thumbPath = 3;
+    string path = 4;
+    int32 gameType = 5;
+    int32 gameContent = 6;
+};
+
+message GameEmojiList {
+    
+};
+
+enum EmojiOperationCode {
+    kEmojiOperationCodeAdd = 1;
+    kEmojiOperationCodeDel = 2;
+    kEmojiOperationCodeTop = 3;
+    kEmojiOperationCodeAddToTop = 4;
+};
+
+message ExtensionRequest {
+    uint32 cmdId = 1;
+    bytes body = 2;
+    uint32 sessionType = 3;
+    uint32 networkPolicy = 4;
+    uint32 expectFinishTime = 5;
+    string uri = 6;
+    uint32 baseRequestFieldNumber = 7;
+    uint32 flag = 8;
+};
+
+message MessageContentAutoDownload {
+    uint32 msgType = 1;
+    uint32 subType = 2;
+    uint32 autoDownloadType = 3;
+    uint32 autoDownloadThreshold = 4;
+};
+
+message MessageContentAutoDownloadGeneral {
+    uint32 type = 1;
+    uint32 threshold = 2;
+};
+
+message AutoDownload {
+    MessageContentAutoDownloadGeneral msgAutoDownloadGeneral = 1;
+};
+
+message DebugIp {
+    uint32 preset = 1;
+    string name = 2;
+    string shortLinkIp = 3;
+    string longLinkIp = 4;
+};
+
+message BuiltinEmojiConfig {
+    string url = 1;
+    string thumbUrl = 2;
+    string md5 = 3;
+};
+
+enum EmojiConfigDisableFlag {
+    kEmojiConfigDisableFlagNone = 0;
+    kEmojiConfigDisableFlagCustom = 1;
+    kEmojiConfigDisableFlagStore = 2;
+};
+
+message EmojiConfig {
+    uint32 disableFlag = 2;
+};
+
+message ContactConfig {
+    bool isBlocSystemContact = 1;
+    bool isBlocBizContact = 2;
+};
+
+message ChatroomConfig {
+    bool isDisableChatroom = 1;
+};
+
+message ConversationConfig {
+    uint32 syncConversationCount = 1;
+};
+
+message EnvironmentConfig {
+    string deviceModel = 1;
+    string deviceBrand = 2;
+    string osName = 3;
+    string osVersion = 4;
+    string language = 5;
+    string locale = 6;
+    uint32 displayVersion = 7;
+};
+
+message CacheConfig {
+    bool autoClean = 1;
+    uint32 autoCleanInterval = 2;
+    uint32 messageCacheRetentionTime = 3;
+    uint32 emojiCacheRetentionTime = 4;
+};
+
+message StartConfig {
+    string sdkPath = 1;
+    string deviceId = 2;
+    string deviceName = 3;
+    string deviceType = 4;
+    uint32 deviceTypeId = 5;
+    uint64 clientVersion = 6;
+    DebugIp debugIp = 7;
+    AutoDownload autoDownload = 8;
+    ChatroomConfig chatroomConfig = 9;
+    EmojiConfig emojiConfig = 10;
+    ContactConfig contactConfig = 11;
+    EnvironmentConfig environmentConfig = 12;
+    ConversationConfig conversationConfig = 13;
+    CacheConfig cacheConfig = 14;
+};
+
+message StartConfig4Js {
+    string sdkPath = 1;
+    string deviceId = 2;
+    string deviceName = 3;
+    string deviceType = 4;
+    uint32 deviceTypeId = 5;
+    string clientVersion = 6;
+    DebugIp debugIp = 7;
+    AutoDownload autoDownload = 8;
+    ChatroomConfig chatroomConfig = 9;
+    EmojiConfig emojiConfig = 10;
+    ContactConfig contactConfig = 11;
+    EnvironmentConfig environmentConfig = 12;
+    ConversationConfig conversationConfig = 13;
+    CacheConfig cacheConfig = 14;
+};
+
+enum WxcodepayErrorCode {
+    kWxcodepayErrorCodeOk = 0;
+    kWxcodepayErrorCodeInvalidParameter = 1;
+    kWxcodepayErrorCodeInvalidState = 2;
+    kWxcodepayErrorCodeSeedExpire = 3;
+    kWxcodepayErrorCodeSeedUseUp = 4;
+    kWxcodepayErrorCodeClockDeviation = 5;
+    kWxcodepayErrorCodeStoreReadFail = 6;
+    kWxcodepayErrorCodeNotInit = 7;
+    kWxcodepayErrorCodeEncryptError = 8;
+    kWxcodepayErrorCodeVendorError = 9;
+    kWxcodepayErrorCodeGenCodeError = 10;
+    kWxcodepayErrorCodeParseDataError = 11;
+    kWxcodepayErrorCodeUnknownError = 999;
+};
+
+enum WxcodepayBindingState {
+    kWxcodepayBindingStateNone = 0;
+    kBindingStateBeginBinding = 1;
+    kBindingStateDataTransporting = 2;
+    kBindingStateDataSaving = 3;
+    kBindingStateAbort = 4;
+    kBindingStateOk = 5;
+};
+
+enum WxcodepayPayState {
+    kWxcodepayPayStateSuccess = 2;
+    kWxcodepayPayStateFail = 3;
+    kWxcodepayPayStateUnbind = 4;
+};
+
+message WxcodepayBindUserInfo {
+    string username = 1;
+    string nickname = 2;
+};
+
+message WxcodepayBindInfo {
+    WxcodepayBindUserInfo userInfo = 1;
+    int32 bindOnSdkVersion = 2;
+};
+
+message WxcodepayInfo {
+    WxcodepayBindInfo bindInfo = 1;
+    int32 sdkVersion = 2;
+};
+
+message WxcodepayPayMessage {
+    int32 state = 1;
+    string transId = 2;
+    uint32 totalFee = 3;
+    string retMsg = 4;
+    uint64 timestamp = 5;
+};
+
+message WxcodepayPayCode {
+    string payCode = 1;
+    uint32 expTime = 2;
+    int32 errCode = 3;
+};
+
+message WxcodepayBalanceInfo {
+    int64 availBalance = 1;
+    uint64 updateTime = 2;
+};
+
+enum LoginQrCodeScene {
+    kLoginQrCodeSceneDefault = 0;
+    kLoginQrCodeScenePushLoginAutoLogin = 1;
+};
+
+message LoginAttr {
+    bool isPushAutoLoginOpen = 1;
+    bool isPushAutoLoginSupport = 2;
+};
+
+message PushLoginExtInfo {
+    int32 scene = 1;
+    uint32 alertCode = 2;
+    string alertWording = 3;
+};
+
+enum VoiceTransEncodeType {
+    kVoiceTransEncodeTypeSpeex = 0;
+    kVoiceTransEncodeTypeAmr = 1;
+    kVoiceTransEncodeTypeSilk = 2;
+    kVoiceTransEncodeTypePcm = 10;
+};
+
+message LogConfig {
+    bool isUseAlitaLog = 1;
+    bool isEnableConsole = 2;
+    bool isUseFilter = 3;
+    uint32 level = 4;
+    string logDir = 5;
+    string publicKey = 6;
+    uint32 maxAliveDays = 8;
+    bool isWriteLogFile = 9;
+    uint32 maxLogFileSize = 10;
+};
+
+message StatusNotifyMessage {
+    uint32 type = 1;
+    SendCommand sendCommand = 2;
+};
+
+message SendCommand {
+    uint32 cmd = 1;
+    HandOffMaster handoffMaster = 2;
+};
+
+message HandOffMaster {
+    uint32 type = 1;
+    uint32 opCode = 2;
+    uint32 seq = 3;
+    string deviceId = 4;
+    string networkStatus = 5;
+    uint64 createTime = 6;
+    string id = 7;
+    string from = 8;
+    string to = 9;
+    HandOffMasterMiniProgram miniProgram = 10;
+    HandOffMasterMiniGame miniGame = 11;
+    HandOffMasterUrl url = 12;
+    HandOffMasterFile file = 13;
+};
+
+message HandOffMasterMiniProgram {
+    uint32 handoffType = 1;
+    string title = 2;
+    string appId = 3;
+    string icon = 4;
+    string appUsername = 5;
+};
+
+message HandOffMasterMiniGame {
+    uint32 handoffType = 1;
+    string title = 2;
+    string appId = 3;
+    string icon = 4;
+    string appUsername = 5;
+};
+
+message HandOffMasterUrl {
+    uint32 handoffType = 1;
+    string title = 2;
+    string url = 3;
+    string icon = 4;
+};
+
+message HandOffMasterFile {
+    uint32 handoffType = 1;
+    string fileType = 2;
+    string title = 3;
+    string md5 = 4;
+    uint32 size = 5;
+    uint32 source = 6;
+    string id = 7;
+    string extId = 8;
+    string cdnUrl = 9;
+    string aesKey = 10;
+    string authKey = 11;
+    uint32 fileStatus = 12;
+    string appId = 13;
+    uint32 sdkVersion = 14;
+    string mediaId = 15;
+};
