@@ -9,8 +9,8 @@
     "build": "npm run build:cjs",
     "build:cjs": "npx tsc",
     "build:pb": "npm run build:pb:alita&&npm run build:pb:alita_log",
-    "build:pb:alita_log": "npx pbjs ./protos/alita_log.proto -o ./protos/gen/alita_log.js -r log -t static-module -w commonjs&&npx pbts ./protos/gen/alita_log.js -o ./protos/gen/alita_log.d.ts",
-    "build:pb:alita": "npx pbjs ./protos/alita.proto -o ./protos/gen/alita.js  -t static-module -w commonjs&&npx pbts ./dist/alita.js -o ./protos/gen/alita.d.ts",
+    "build:pb:alita_log": "npx pbjs ./protos/alita_log.proto ./protos/alita_logcallback.proto -o ./protos/gen/alita_log.js -r log -t static-module -w commonjs&&npx pbts ./protos/gen/alita_log.js -o ./protos/gen/alita_log.d.ts",
+    "build:pb:alita": "npx pbjs ./protos/alita.proto -o ./protos/gen/alita.js ./protos/alita_callback.proto  -t static-module -w commonjs&&npx pbts ./protos/gen/alita.js -o ./protos/gen/alita.d.ts",
     "build:esm": "npx tsc -p tsconfig.esm.json"
   },
   "repository": {

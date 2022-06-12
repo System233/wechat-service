@@ -3731,4 +3731,343 @@ $root.alita = (function() {
     return alita;
 })();
 
+$root.logcallback = (function() {
+
+    /**
+     * Namespace logcallback.
+     * @exports logcallback
+     * @namespace
+     */
+    var logcallback = {};
+
+    /**
+     * CallbackType enum.
+     * @name logcallback.CallbackType
+     * @enum {number}
+     * @property {number} kCallbackTypeResponse=1 kCallbackTypeResponse value
+     * @property {number} kCallbackTypeEvent=2 kCallbackTypeEvent value
+     */
+    logcallback.CallbackType = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[1] = "kCallbackTypeResponse"] = 1;
+        values[valuesById[2] = "kCallbackTypeEvent"] = 2;
+        return values;
+    })();
+
+    logcallback.CommCallback = (function() {
+
+        /**
+         * Properties of a CommCallback.
+         * @memberof logcallback
+         * @interface ICommCallback
+         * @property {number|null} [type] CommCallback type
+         * @property {number|Long|null} [handle] CommCallback handle
+         * @property {number|Long|null} [taskid] CommCallback taskid
+         * @property {number|null} [eventType] CommCallback eventType
+         * @property {Uint8Array|null} [content] CommCallback content
+         */
+
+        /**
+         * Constructs a new CommCallback.
+         * @memberof logcallback
+         * @classdesc Represents a CommCallback.
+         * @implements ICommCallback
+         * @constructor
+         * @param {logcallback.ICommCallback=} [properties] Properties to set
+         */
+        function CommCallback(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * CommCallback type.
+         * @member {number} type
+         * @memberof logcallback.CommCallback
+         * @instance
+         */
+        CommCallback.prototype.type = 0;
+
+        /**
+         * CommCallback handle.
+         * @member {number|Long} handle
+         * @memberof logcallback.CommCallback
+         * @instance
+         */
+        CommCallback.prototype.handle = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * CommCallback taskid.
+         * @member {number|Long} taskid
+         * @memberof logcallback.CommCallback
+         * @instance
+         */
+        CommCallback.prototype.taskid = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * CommCallback eventType.
+         * @member {number} eventType
+         * @memberof logcallback.CommCallback
+         * @instance
+         */
+        CommCallback.prototype.eventType = 0;
+
+        /**
+         * CommCallback content.
+         * @member {Uint8Array} content
+         * @memberof logcallback.CommCallback
+         * @instance
+         */
+        CommCallback.prototype.content = $util.newBuffer([]);
+
+        /**
+         * Creates a new CommCallback instance using the specified properties.
+         * @function create
+         * @memberof logcallback.CommCallback
+         * @static
+         * @param {logcallback.ICommCallback=} [properties] Properties to set
+         * @returns {logcallback.CommCallback} CommCallback instance
+         */
+        CommCallback.create = function create(properties) {
+            return new CommCallback(properties);
+        };
+
+        /**
+         * Encodes the specified CommCallback message. Does not implicitly {@link logcallback.CommCallback.verify|verify} messages.
+         * @function encode
+         * @memberof logcallback.CommCallback
+         * @static
+         * @param {logcallback.ICommCallback} message CommCallback message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CommCallback.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
+            if (message.handle != null && Object.hasOwnProperty.call(message, "handle"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.handle);
+            if (message.taskid != null && Object.hasOwnProperty.call(message, "taskid"))
+                writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.taskid);
+            if (message.eventType != null && Object.hasOwnProperty.call(message, "eventType"))
+                writer.uint32(/* id 4, wireType 0 =*/32).int32(message.eventType);
+            if (message.content != null && Object.hasOwnProperty.call(message, "content"))
+                writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.content);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CommCallback message, length delimited. Does not implicitly {@link logcallback.CommCallback.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof logcallback.CommCallback
+         * @static
+         * @param {logcallback.ICommCallback} message CommCallback message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CommCallback.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CommCallback message from the specified reader or buffer.
+         * @function decode
+         * @memberof logcallback.CommCallback
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {logcallback.CommCallback} CommCallback
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CommCallback.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.logcallback.CommCallback();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.type = reader.int32();
+                    break;
+                case 2:
+                    message.handle = reader.int64();
+                    break;
+                case 3:
+                    message.taskid = reader.uint64();
+                    break;
+                case 4:
+                    message.eventType = reader.int32();
+                    break;
+                case 5:
+                    message.content = reader.bytes();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CommCallback message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof logcallback.CommCallback
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {logcallback.CommCallback} CommCallback
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CommCallback.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CommCallback message.
+         * @function verify
+         * @memberof logcallback.CommCallback
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CommCallback.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.type != null && message.hasOwnProperty("type"))
+                if (!$util.isInteger(message.type))
+                    return "type: integer expected";
+            if (message.handle != null && message.hasOwnProperty("handle"))
+                if (!$util.isInteger(message.handle) && !(message.handle && $util.isInteger(message.handle.low) && $util.isInteger(message.handle.high)))
+                    return "handle: integer|Long expected";
+            if (message.taskid != null && message.hasOwnProperty("taskid"))
+                if (!$util.isInteger(message.taskid) && !(message.taskid && $util.isInteger(message.taskid.low) && $util.isInteger(message.taskid.high)))
+                    return "taskid: integer|Long expected";
+            if (message.eventType != null && message.hasOwnProperty("eventType"))
+                if (!$util.isInteger(message.eventType))
+                    return "eventType: integer expected";
+            if (message.content != null && message.hasOwnProperty("content"))
+                if (!(message.content && typeof message.content.length === "number" || $util.isString(message.content)))
+                    return "content: buffer expected";
+            return null;
+        };
+
+        /**
+         * Creates a CommCallback message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof logcallback.CommCallback
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {logcallback.CommCallback} CommCallback
+         */
+        CommCallback.fromObject = function fromObject(object) {
+            if (object instanceof $root.logcallback.CommCallback)
+                return object;
+            var message = new $root.logcallback.CommCallback();
+            if (object.type != null)
+                message.type = object.type | 0;
+            if (object.handle != null)
+                if ($util.Long)
+                    (message.handle = $util.Long.fromValue(object.handle)).unsigned = false;
+                else if (typeof object.handle === "string")
+                    message.handle = parseInt(object.handle, 10);
+                else if (typeof object.handle === "number")
+                    message.handle = object.handle;
+                else if (typeof object.handle === "object")
+                    message.handle = new $util.LongBits(object.handle.low >>> 0, object.handle.high >>> 0).toNumber();
+            if (object.taskid != null)
+                if ($util.Long)
+                    (message.taskid = $util.Long.fromValue(object.taskid)).unsigned = true;
+                else if (typeof object.taskid === "string")
+                    message.taskid = parseInt(object.taskid, 10);
+                else if (typeof object.taskid === "number")
+                    message.taskid = object.taskid;
+                else if (typeof object.taskid === "object")
+                    message.taskid = new $util.LongBits(object.taskid.low >>> 0, object.taskid.high >>> 0).toNumber(true);
+            if (object.eventType != null)
+                message.eventType = object.eventType | 0;
+            if (object.content != null)
+                if (typeof object.content === "string")
+                    $util.base64.decode(object.content, message.content = $util.newBuffer($util.base64.length(object.content)), 0);
+                else if (object.content.length)
+                    message.content = object.content;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a CommCallback message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof logcallback.CommCallback
+         * @static
+         * @param {logcallback.CommCallback} message CommCallback
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CommCallback.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.type = 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.handle = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.handle = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.taskid = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.taskid = options.longs === String ? "0" : 0;
+                object.eventType = 0;
+                if (options.bytes === String)
+                    object.content = "";
+                else {
+                    object.content = [];
+                    if (options.bytes !== Array)
+                        object.content = $util.newBuffer(object.content);
+                }
+            }
+            if (message.type != null && message.hasOwnProperty("type"))
+                object.type = message.type;
+            if (message.handle != null && message.hasOwnProperty("handle"))
+                if (typeof message.handle === "number")
+                    object.handle = options.longs === String ? String(message.handle) : message.handle;
+                else
+                    object.handle = options.longs === String ? $util.Long.prototype.toString.call(message.handle) : options.longs === Number ? new $util.LongBits(message.handle.low >>> 0, message.handle.high >>> 0).toNumber() : message.handle;
+            if (message.taskid != null && message.hasOwnProperty("taskid"))
+                if (typeof message.taskid === "number")
+                    object.taskid = options.longs === String ? String(message.taskid) : message.taskid;
+                else
+                    object.taskid = options.longs === String ? $util.Long.prototype.toString.call(message.taskid) : options.longs === Number ? new $util.LongBits(message.taskid.low >>> 0, message.taskid.high >>> 0).toNumber(true) : message.taskid;
+            if (message.eventType != null && message.hasOwnProperty("eventType"))
+                object.eventType = message.eventType;
+            if (message.content != null && message.hasOwnProperty("content"))
+                object.content = options.bytes === String ? $util.base64.encode(message.content, 0, message.content.length) : options.bytes === Array ? Array.prototype.slice.call(message.content) : message.content;
+            return object;
+        };
+
+        /**
+         * Converts this CommCallback to JSON.
+         * @function toJSON
+         * @memberof logcallback.CommCallback
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CommCallback.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return CommCallback;
+    })();
+
+    return logcallback;
+})();
+
 module.exports = $root;

@@ -1,7 +1,8 @@
 // 
-// This file is decompiled by depbjs v0.0.5.
+// This file is decompiled by depbjs v1.0.9.
 // source: .\index.js
 // 
+
 syntax = "proto3";
 package alita;
 

@@ -1,0 +1,20 @@
+// 
+// This file is decompiled by depbjs v1.0.9.
+// source: .\index.js
+// 
+
+syntax = "proto3";
+package callback;
+
+enum CallbackType {
+    kCallbackTypeResponse = 1;
+    kCallbackTypeEvent = 2;
+};
+
+message CommCallback {
+    int32 type = 1;
+    int64 handle = 2;
+    uint64 taskid = 3;
+    int32 eventType = 4;
+    bytes content = 5;
+};

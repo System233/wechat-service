@@ -1,7 +1,8 @@
 // 
-// This file is decompiled by depbjs v0.0.5.
+// This file is decompiled by depbjs v1.0.9.
 // source: .\index.js
 // 
+
 syntax = "proto3";
 package alita;
 
@@ -85,6 +86,7 @@ message Category {
     uint32 count = 2;
     string name = 3;
     TopNew topNew = 4;
+    repeated Item item = 5;
 };
 
 message TopNew {
@@ -105,6 +107,8 @@ message Item {
     string tweetId = 8;
     string digest = 9;
     uint32 fileId = 10;
+    repeated Source sources = 11;
+    repeated Style styles = 12;
     string nativeUrl = 13;
     uint32 delFlag = 14;
     uint32 contentAttr = 15;
@@ -179,7 +183,7 @@ message RecordInfo {
 };
 
 message DataList {
-    
+    repeated DataItem items = 1;
 };
 
 message DataItem {
@@ -279,7 +283,6 @@ message AppBrandItem {
 };
 
 message UploadLogInfo {
-    
 };
 
 message DynamicConfig {
@@ -288,7 +291,7 @@ message DynamicConfig {
 };
 
 message DynamicConfigList {
-    
+    repeated DynamicConfig config = 1;
 };
 
 message BuildInfo {
@@ -336,11 +339,10 @@ message BaseResponse {
 };
 
 message UsernameList {
-    
+    repeated string username = 1;
 };
 
 message CmdIdList {
-    
 };
 
 message SetForegroundRequest {
@@ -682,6 +684,7 @@ message DeleteContactResponse {
 
 message BatchUpdateContactRequest {
     uint64 taskId = 1;
+    repeated string usernameList = 2;
 };
 
 message BatchUpdateContactResponse {
@@ -1018,6 +1021,7 @@ message GetMessageResponse {
 };
 
 message SearchMessageWithKeywordsRequest {
+    repeated string keywordList = 1;
     uint64 startMsgId = 2;
     int32 offset = 3;
 };
@@ -1028,6 +1032,7 @@ message SearchMessageWithKeywordsResponse {
 
 message SearchMessageWithKeywords1Request {
     string username = 1;
+    repeated string keywordList = 2;
     uint64 startMsgId = 3;
     int32 offset = 4;
 };
@@ -1038,6 +1043,7 @@ message SearchMessageWithKeywords1Response {
 
 message SearchMessageWithKeywords2Request {
     uint64 talkerId = 1;
+    repeated string keywordList = 2;
     uint64 startMsgId = 3;
     int32 offset = 4;
 };
@@ -1278,6 +1284,7 @@ message GetChatRoomDetailResponse {
 message AddRoomMemberRequest {
     uint64 taskId = 1;
     string roomUsername = 2;
+    repeated string usernameList = 3;
 };
 
 message AddRoomMemberResponse {
@@ -1289,6 +1296,7 @@ message AddRoomMemberResponse {
 message InviteRoomMemberRequest {
     uint64 taskId = 1;
     string roomUsername = 2;
+    repeated string usernameList = 3;
 };
 
 message InviteRoomMemberResponse {
@@ -1300,6 +1308,7 @@ message InviteRoomMemberResponse {
 message DeleteRoomMemberRequest {
     uint64 taskId = 1;
     string roomUsername = 2;
+    repeated string usernameList = 3;
 };
 
 message DeleteRoomMemberResponse {
@@ -1322,6 +1331,7 @@ message SetRoomAnnouncementResponse {
 
 message CreateChatRoomRequest {
     uint64 taskId = 1;
+    repeated string usernameList = 2;
 };
 
 message CreateChatRoomResponse {
@@ -1631,6 +1641,7 @@ message EmojiOperationRequest {
     uint64 taskId = 1;
     int32 panelType = 2;
     int32 opCode = 3;
+    repeated string emojiMd5List = 4;
 };
 
 message EmojiOperationResponse {
@@ -1642,6 +1653,7 @@ message EmojiOperationResponse {
 message EmojiOperationCheckRequest {
     int32 panelType = 1;
     int32 opCode = 2;
+    repeated string emojiMd5List = 3;
 };
 
 message EmojiOperationCheckResponse {
@@ -1768,7 +1780,6 @@ message CancelTask1Response {
 };
 
 message SubscribeNotifyCmdIdsRequest {
-    
 };
 
 message SubscribeNotifyCmdIdsResponse {
@@ -1776,7 +1787,6 @@ message SubscribeNotifyCmdIdsResponse {
 };
 
 message UnsubscribeNotifyCmdIdsRequest {
-    
 };
 
 message UnsubscribeNotifyCmdIdsResponse {
@@ -2600,7 +2610,7 @@ message User {
 };
 
 message UserList {
-    
+    repeated User user = 1;
 };
 
 message UserProfile {
@@ -2623,6 +2633,7 @@ message SafeDevice {
 
 message SafeDeviceList {
     uint32 Count = 1;
+    repeated SafeDevice List = 2;
 };
 
 message SnsUserInfo {
@@ -2724,6 +2735,7 @@ message GmailInfo {
 
 message GmailList {
     uint32 Count = 1;
+    repeated GmailInfo List = 2;
 };
 
 message LinkedinContactItem {
@@ -2774,7 +2786,7 @@ message Contact {
 };
 
 message ContactList {
-    
+    repeated Contact contact = 1;
 };
 
 message VerifyContact {
@@ -2805,10 +2817,11 @@ message VerifyContact {
 
 message VerifyContactSummery {
     uint32 unreadCount = 1;
+    repeated VerifyContact verifyContact = 2;
 };
 
 message VerifyContactList {
-    
+    repeated VerifyContact verifyContact = 1;
 };
 
 message CustomizedInfo {
@@ -2849,7 +2862,7 @@ message SearchContactItem {
 };
 
 message SearchContactItemList {
-    
+    repeated SearchContactItem itemList = 1;
 };
 
 enum SearchContactFromScene {
@@ -2899,7 +2912,7 @@ message Conversation {
 };
 
 message ConversationList {
-    
+    repeated Conversation conversation = 1;
 };
 
 message CdnImageDownloadInfo {
@@ -2994,7 +3007,7 @@ message Message {
 };
 
 message MessageList {
-    
+    repeated Message msg = 1;
 };
 
 message ImageMessageContent {
@@ -3044,7 +3057,7 @@ message VerifyMessageContent {
 };
 
 message VerifyMessageContentList {
-    
+    repeated VerifyMessageContent verifyMessageContent = 1;
 };
 
 message LocationMessageContent {
@@ -3107,7 +3120,7 @@ message PushMailContact {
 };
 
 message PushMailContactList {
-    
+    repeated PushMailContact contacts = 1;
 };
 
 message PushMailMessageContent {
@@ -3131,15 +3144,18 @@ message SystemMessageTemplateMember {
 message SystemMessageTemplateLink {
     string name = 1;
     string type = 2;
+    repeated SystemMessageTemplateMember memberList = 3;
     string separator = 4;
     uint32 hidden = 5;
     string title = 6;
+    repeated string usernameList = 7;
 };
 
 message SystemMessageTemplate {
     string contentType = 1;
     string plain = 2;
     string template = 3;
+    repeated SystemMessageTemplateLink linkList = 4;
 };
 
 message PatMessageTemplate {
@@ -3182,13 +3198,14 @@ message ChatRoomMember {
 };
 
 message ChatRoomMemberList {
+    repeated ChatRoomMember chatroomMember = 1;
     uint32 infoMask = 2;
     uint32 clientVersion = 3;
     uint32 svrVersion = 4;
 };
 
 message UnverifyMemberList {
-    
+    repeated UnverifyMember member = 1;
 };
 
 message UnverifyMember {
@@ -3222,6 +3239,7 @@ message StoreEmoji {
     int32 type = 2;
     string thumbPath = 3;
     string path = 4;
+    repeated Desc desc = 5;
 };
 
 message StoreEmojiPack {
@@ -3229,10 +3247,11 @@ message StoreEmojiPack {
     string name = 2;
     string panelUrl = 3;
     string iconUrl = 4;
+    repeated StoreEmoji emoji = 5;
 };
 
 message StoreEmojiList {
-    
+    repeated StoreEmojiPack emojiPack = 1;
 };
 
 message CustomEmoji {
@@ -3244,7 +3263,7 @@ message CustomEmoji {
 };
 
 message CustomEmojiList {
-    
+    repeated CustomEmoji customEmoji = 1;
 };
 
 message BuiltinEmoji {
@@ -3254,7 +3273,7 @@ message BuiltinEmoji {
 };
 
 message BuiltinEmojiList {
-    
+    repeated BuiltinEmoji builtinEmoji = 1;
 };
 
 message GameEmoji {
@@ -3267,7 +3286,7 @@ message GameEmoji {
 };
 
 message GameEmojiList {
-    
+    repeated GameEmoji gameEmoji = 1;
 };
 
 enum EmojiOperationCode {
@@ -3302,6 +3321,7 @@ message MessageContentAutoDownloadGeneral {
 
 message AutoDownload {
     MessageContentAutoDownloadGeneral msgAutoDownloadGeneral = 1;
+    repeated MessageContentAutoDownload msgAutoDownload = 2;
 };
 
 message DebugIp {
@@ -3324,12 +3344,14 @@ enum EmojiConfigDisableFlag {
 };
 
 message EmojiConfig {
+    repeated BuiltinEmojiConfig builtinEomjiConfig = 1;
     uint32 disableFlag = 2;
 };
 
 message ContactConfig {
     bool isBlocSystemContact = 1;
     bool isBlocBizContact = 2;
+    repeated string whiteList = 3;
 };
 
 message ChatroomConfig {

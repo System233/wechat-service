@@ -928,6 +928,9 @@ export namespace alita {
 
         /** Category topNew */
         topNew?: (alita.ITopNew|null);
+
+        /** Category item */
+        item?: (alita.IItem[]|null);
     }
 
     /** Represents a Category. */
@@ -950,6 +953,9 @@ export namespace alita {
 
         /** Category topNew. */
         public topNew?: (alita.ITopNew|null);
+
+        /** Category item. */
+        public item: alita.IItem[];
 
         /**
          * Creates a new Category instance using the specified properties.
@@ -1163,6 +1169,12 @@ export namespace alita {
         /** Item fileId */
         fileId?: (number|null);
 
+        /** Item sources */
+        sources?: (alita.ISource[]|null);
+
+        /** Item styles */
+        styles?: (alita.IStyle[]|null);
+
         /** Item nativeUrl */
         nativeUrl?: (string|null);
 
@@ -1277,6 +1289,12 @@ export namespace alita {
 
         /** Item fileId. */
         public fileId: number;
+
+        /** Item sources. */
+        public sources: alita.ISource[];
+
+        /** Item styles. */
+        public styles: alita.IStyle[];
 
         /** Item nativeUrl. */
         public nativeUrl: string;
@@ -2164,6 +2182,9 @@ export namespace alita {
 
     /** Properties of a DataList. */
     interface IDataList {
+
+        /** DataList items */
+        items?: (alita.IDataItem[]|null);
     }
 
     /** Represents a DataList. */
@@ -2174,6 +2195,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IDataList);
+
+        /** DataList items. */
+        public items: alita.IDataItem[];
 
         /**
          * Creates a new DataList instance using the specified properties.
@@ -3466,6 +3490,9 @@ export namespace alita {
 
     /** Properties of a DynamicConfigList. */
     interface IDynamicConfigList {
+
+        /** DynamicConfigList config */
+        config?: (alita.IDynamicConfig[]|null);
     }
 
     /** Represents a DynamicConfigList. */
@@ -3476,6 +3503,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IDynamicConfigList);
+
+        /** DynamicConfigList config. */
+        public config: alita.IDynamicConfig[];
 
         /**
          * Creates a new DynamicConfigList instance using the specified properties.
@@ -4342,6 +4372,9 @@ export namespace alita {
 
     /** Properties of a UsernameList. */
     interface IUsernameList {
+
+        /** UsernameList username */
+        username?: (string[]|null);
     }
 
     /** Represents a UsernameList. */
@@ -4352,6 +4385,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IUsernameList);
+
+        /** UsernameList username. */
+        public username: string[];
 
         /**
          * Creates a new UsernameList instance using the specified properties.
@@ -10759,6 +10795,9 @@ export namespace alita {
 
         /** BatchUpdateContactRequest taskId */
         taskId?: (number|Long|null);
+
+        /** BatchUpdateContactRequest usernameList */
+        usernameList?: (string[]|null);
     }
 
     /** Represents a BatchUpdateContactRequest. */
@@ -10772,6 +10811,9 @@ export namespace alita {
 
         /** BatchUpdateContactRequest taskId. */
         public taskId: (number|Long);
+
+        /** BatchUpdateContactRequest usernameList. */
+        public usernameList: string[];
 
         /**
          * Creates a new BatchUpdateContactRequest instance using the specified properties.
@@ -16673,6 +16715,9 @@ export namespace alita {
     /** Properties of a SearchMessageWithKeywordsRequest. */
     interface ISearchMessageWithKeywordsRequest {
 
+        /** SearchMessageWithKeywordsRequest keywordList */
+        keywordList?: (string[]|null);
+
         /** SearchMessageWithKeywordsRequest startMsgId */
         startMsgId?: (number|Long|null);
 
@@ -16688,6 +16733,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.ISearchMessageWithKeywordsRequest);
+
+        /** SearchMessageWithKeywordsRequest keywordList. */
+        public keywordList: string[];
 
         /** SearchMessageWithKeywordsRequest startMsgId. */
         public startMsgId: (number|Long);
@@ -16862,6 +16910,9 @@ export namespace alita {
         /** SearchMessageWithKeywords1Request username */
         username?: (string|null);
 
+        /** SearchMessageWithKeywords1Request keywordList */
+        keywordList?: (string[]|null);
+
         /** SearchMessageWithKeywords1Request startMsgId */
         startMsgId?: (number|Long|null);
 
@@ -16880,6 +16931,9 @@ export namespace alita {
 
         /** SearchMessageWithKeywords1Request username. */
         public username: string;
+
+        /** SearchMessageWithKeywords1Request keywordList. */
+        public keywordList: string[];
 
         /** SearchMessageWithKeywords1Request startMsgId. */
         public startMsgId: (number|Long);
@@ -17054,6 +17108,9 @@ export namespace alita {
         /** SearchMessageWithKeywords2Request talkerId */
         talkerId?: (number|Long|null);
 
+        /** SearchMessageWithKeywords2Request keywordList */
+        keywordList?: (string[]|null);
+
         /** SearchMessageWithKeywords2Request startMsgId */
         startMsgId?: (number|Long|null);
 
@@ -17072,6 +17129,9 @@ export namespace alita {
 
         /** SearchMessageWithKeywords2Request talkerId. */
         public talkerId: (number|Long);
+
+        /** SearchMessageWithKeywords2Request keywordList. */
+        public keywordList: string[];
 
         /** SearchMessageWithKeywords2Request startMsgId. */
         public startMsgId: (number|Long);
@@ -21592,6 +21652,9 @@ export namespace alita {
 
         /** AddRoomMemberRequest roomUsername */
         roomUsername?: (string|null);
+
+        /** AddRoomMemberRequest usernameList */
+        usernameList?: (string[]|null);
     }
 
     /** Represents an AddRoomMemberRequest. */
@@ -21608,6 +21671,9 @@ export namespace alita {
 
         /** AddRoomMemberRequest roomUsername. */
         public roomUsername: string;
+
+        /** AddRoomMemberRequest usernameList. */
+        public usernameList: string[];
 
         /**
          * Creates a new AddRoomMemberRequest instance using the specified properties.
@@ -21790,6 +21856,9 @@ export namespace alita {
 
         /** InviteRoomMemberRequest roomUsername */
         roomUsername?: (string|null);
+
+        /** InviteRoomMemberRequest usernameList */
+        usernameList?: (string[]|null);
     }
 
     /** Represents an InviteRoomMemberRequest. */
@@ -21806,6 +21875,9 @@ export namespace alita {
 
         /** InviteRoomMemberRequest roomUsername. */
         public roomUsername: string;
+
+        /** InviteRoomMemberRequest usernameList. */
+        public usernameList: string[];
 
         /**
          * Creates a new InviteRoomMemberRequest instance using the specified properties.
@@ -21988,6 +22060,9 @@ export namespace alita {
 
         /** DeleteRoomMemberRequest roomUsername */
         roomUsername?: (string|null);
+
+        /** DeleteRoomMemberRequest usernameList */
+        usernameList?: (string[]|null);
     }
 
     /** Represents a DeleteRoomMemberRequest. */
@@ -22004,6 +22079,9 @@ export namespace alita {
 
         /** DeleteRoomMemberRequest roomUsername. */
         public roomUsername: string;
+
+        /** DeleteRoomMemberRequest usernameList. */
+        public usernameList: string[];
 
         /**
          * Creates a new DeleteRoomMemberRequest instance using the specified properties.
@@ -22387,6 +22465,9 @@ export namespace alita {
 
         /** CreateChatRoomRequest taskId */
         taskId?: (number|Long|null);
+
+        /** CreateChatRoomRequest usernameList */
+        usernameList?: (string[]|null);
     }
 
     /** Represents a CreateChatRoomRequest. */
@@ -22400,6 +22481,9 @@ export namespace alita {
 
         /** CreateChatRoomRequest taskId. */
         public taskId: (number|Long);
+
+        /** CreateChatRoomRequest usernameList. */
+        public usernameList: string[];
 
         /**
          * Creates a new CreateChatRoomRequest instance using the specified properties.
@@ -27997,6 +28081,9 @@ export namespace alita {
 
         /** EmojiOperationRequest opCode */
         opCode?: (number|null);
+
+        /** EmojiOperationRequest emojiMd5List */
+        emojiMd5List?: (string[]|null);
     }
 
     /** Represents an EmojiOperationRequest. */
@@ -28016,6 +28103,9 @@ export namespace alita {
 
         /** EmojiOperationRequest opCode. */
         public opCode: number;
+
+        /** EmojiOperationRequest emojiMd5List. */
+        public emojiMd5List: string[];
 
         /**
          * Creates a new EmojiOperationRequest instance using the specified properties.
@@ -28198,6 +28288,9 @@ export namespace alita {
 
         /** EmojiOperationCheckRequest opCode */
         opCode?: (number|null);
+
+        /** EmojiOperationCheckRequest emojiMd5List */
+        emojiMd5List?: (string[]|null);
     }
 
     /** Represents an EmojiOperationCheckRequest. */
@@ -28214,6 +28307,9 @@ export namespace alita {
 
         /** EmojiOperationCheckRequest opCode. */
         public opCode: number;
+
+        /** EmojiOperationCheckRequest emojiMd5List. */
+        public emojiMd5List: string[];
 
         /**
          * Creates a new EmojiOperationCheckRequest instance using the specified properties.
@@ -32758,6 +32854,9 @@ export namespace alita {
 
     /** Properties of a UserList. */
     interface IUserList {
+
+        /** UserList user */
+        user?: (alita.IUser[]|null);
     }
 
     /** Represents a UserList. */
@@ -32768,6 +32867,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IUserList);
+
+        /** UserList user. */
+        public user: alita.IUser[];
 
         /**
          * Creates a new UserList instance using the specified properties.
@@ -33151,6 +33253,9 @@ export namespace alita {
 
         /** SafeDeviceList Count */
         Count?: (number|null);
+
+        /** SafeDeviceList List */
+        List?: (alita.ISafeDevice[]|null);
     }
 
     /** Represents a SafeDeviceList. */
@@ -33164,6 +33269,9 @@ export namespace alita {
 
         /** SafeDeviceList Count. */
         public Count: number;
+
+        /** SafeDeviceList List. */
+        public List: alita.ISafeDevice[];
 
         /**
          * Creates a new SafeDeviceList instance using the specified properties.
@@ -34219,6 +34327,9 @@ export namespace alita {
 
         /** GmailList Count */
         Count?: (number|null);
+
+        /** GmailList List */
+        List?: (alita.IGmailInfo[]|null);
     }
 
     /** Represents a GmailList. */
@@ -34232,6 +34343,9 @@ export namespace alita {
 
         /** GmailList Count. */
         public Count: number;
+
+        /** GmailList List. */
+        public List: alita.IGmailInfo[];
 
         /**
          * Creates a new GmailList instance using the specified properties.
@@ -34786,6 +34900,9 @@ export namespace alita {
 
     /** Properties of a ContactList. */
     interface IContactList {
+
+        /** ContactList contact */
+        contact?: (alita.IContact[]|null);
     }
 
     /** Represents a ContactList. */
@@ -34796,6 +34913,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IContactList);
+
+        /** ContactList contact. */
+        public contact: alita.IContact[];
 
         /**
          * Creates a new ContactList instance using the specified properties.
@@ -35095,6 +35215,9 @@ export namespace alita {
 
         /** VerifyContactSummery unreadCount */
         unreadCount?: (number|null);
+
+        /** VerifyContactSummery verifyContact */
+        verifyContact?: (alita.IVerifyContact[]|null);
     }
 
     /** Represents a VerifyContactSummery. */
@@ -35108,6 +35231,9 @@ export namespace alita {
 
         /** VerifyContactSummery unreadCount. */
         public unreadCount: number;
+
+        /** VerifyContactSummery verifyContact. */
+        public verifyContact: alita.IVerifyContact[];
 
         /**
          * Creates a new VerifyContactSummery instance using the specified properties.
@@ -35182,6 +35308,9 @@ export namespace alita {
 
     /** Properties of a VerifyContactList. */
     interface IVerifyContactList {
+
+        /** VerifyContactList verifyContact */
+        verifyContact?: (alita.IVerifyContact[]|null);
     }
 
     /** Represents a VerifyContactList. */
@@ -35192,6 +35321,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IVerifyContactList);
+
+        /** VerifyContactList verifyContact. */
+        public verifyContact: alita.IVerifyContact[];
 
         /**
          * Creates a new VerifyContactList instance using the specified properties.
@@ -35620,6 +35752,9 @@ export namespace alita {
 
     /** Properties of a SearchContactItemList. */
     interface ISearchContactItemList {
+
+        /** SearchContactItemList itemList */
+        itemList?: (alita.ISearchContactItem[]|null);
     }
 
     /** Represents a SearchContactItemList. */
@@ -35630,6 +35765,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.ISearchContactItemList);
+
+        /** SearchContactItemList itemList. */
+        public itemList: alita.ISearchContactItem[];
 
         /**
          * Creates a new SearchContactItemList instance using the specified properties.
@@ -35978,6 +36116,9 @@ export namespace alita {
 
     /** Properties of a ConversationList. */
     interface IConversationList {
+
+        /** ConversationList conversation */
+        conversation?: (alita.IConversation[]|null);
     }
 
     /** Represents a ConversationList. */
@@ -35988,6 +36129,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IConversationList);
+
+        /** ConversationList conversation. */
+        public conversation: alita.IConversation[];
 
         /**
          * Creates a new ConversationList instance using the specified properties.
@@ -36938,6 +37082,9 @@ export namespace alita {
 
     /** Properties of a MessageList. */
     interface IMessageList {
+
+        /** MessageList msg */
+        msg?: (alita.IMessage[]|null);
     }
 
     /** Represents a MessageList. */
@@ -36948,6 +37095,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IMessageList);
+
+        /** MessageList msg. */
+        public msg: alita.IMessage[];
 
         /**
          * Creates a new MessageList instance using the specified properties.
@@ -37430,6 +37580,9 @@ export namespace alita {
 
     /** Properties of a VerifyMessageContentList. */
     interface IVerifyMessageContentList {
+
+        /** VerifyMessageContentList verifyMessageContent */
+        verifyMessageContent?: (alita.IVerifyMessageContent[]|null);
     }
 
     /** Represents a VerifyMessageContentList. */
@@ -37440,6 +37593,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IVerifyMessageContentList);
+
+        /** VerifyMessageContentList verifyMessageContent. */
+        public verifyMessageContent: alita.IVerifyMessageContent[];
 
         /**
          * Creates a new VerifyMessageContentList instance using the specified properties.
@@ -38330,6 +38486,9 @@ export namespace alita {
 
     /** Properties of a PushMailContactList. */
     interface IPushMailContactList {
+
+        /** PushMailContactList contacts */
+        contacts?: (alita.IPushMailContact[]|null);
     }
 
     /** Represents a PushMailContactList. */
@@ -38340,6 +38499,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IPushMailContactList);
+
+        /** PushMailContactList contacts. */
+        public contacts: alita.IPushMailContact[];
 
         /**
          * Creates a new PushMailContactList instance using the specified properties.
@@ -38661,6 +38823,9 @@ export namespace alita {
         /** SystemMessageTemplateLink type */
         type?: (string|null);
 
+        /** SystemMessageTemplateLink memberList */
+        memberList?: (alita.ISystemMessageTemplateMember[]|null);
+
         /** SystemMessageTemplateLink separator */
         separator?: (string|null);
 
@@ -38669,6 +38834,9 @@ export namespace alita {
 
         /** SystemMessageTemplateLink title */
         title?: (string|null);
+
+        /** SystemMessageTemplateLink usernameList */
+        usernameList?: (string[]|null);
     }
 
     /** Represents a SystemMessageTemplateLink. */
@@ -38686,6 +38854,9 @@ export namespace alita {
         /** SystemMessageTemplateLink type. */
         public type: string;
 
+        /** SystemMessageTemplateLink memberList. */
+        public memberList: alita.ISystemMessageTemplateMember[];
+
         /** SystemMessageTemplateLink separator. */
         public separator: string;
 
@@ -38694,6 +38865,9 @@ export namespace alita {
 
         /** SystemMessageTemplateLink title. */
         public title: string;
+
+        /** SystemMessageTemplateLink usernameList. */
+        public usernameList: string[];
 
         /**
          * Creates a new SystemMessageTemplateLink instance using the specified properties.
@@ -38777,6 +38951,9 @@ export namespace alita {
 
         /** SystemMessageTemplate template */
         template?: (string|null);
+
+        /** SystemMessageTemplate linkList */
+        linkList?: (alita.ISystemMessageTemplateLink[]|null);
     }
 
     /** Represents a SystemMessageTemplate. */
@@ -38796,6 +38973,9 @@ export namespace alita {
 
         /** SystemMessageTemplate template. */
         public template: string;
+
+        /** SystemMessageTemplate linkList. */
+        public linkList: alita.ISystemMessageTemplateLink[];
 
         /**
          * Creates a new SystemMessageTemplate instance using the specified properties.
@@ -39369,6 +39549,9 @@ export namespace alita {
     /** Properties of a ChatRoomMemberList. */
     interface IChatRoomMemberList {
 
+        /** ChatRoomMemberList chatroomMember */
+        chatroomMember?: (alita.IChatRoomMember[]|null);
+
         /** ChatRoomMemberList infoMask */
         infoMask?: (number|null);
 
@@ -39387,6 +39570,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IChatRoomMemberList);
+
+        /** ChatRoomMemberList chatroomMember. */
+        public chatroomMember: alita.IChatRoomMember[];
 
         /** ChatRoomMemberList infoMask. */
         public infoMask: number;
@@ -39470,6 +39656,9 @@ export namespace alita {
 
     /** Properties of an UnverifyMemberList. */
     interface IUnverifyMemberList {
+
+        /** UnverifyMemberList member */
+        member?: (alita.IUnverifyMember[]|null);
     }
 
     /** Represents an UnverifyMemberList. */
@@ -39480,6 +39669,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IUnverifyMemberList);
+
+        /** UnverifyMemberList member. */
+        public member: alita.IUnverifyMember[];
 
         /**
          * Creates a new UnverifyMemberList instance using the specified properties.
@@ -39854,6 +40046,9 @@ export namespace alita {
 
         /** StoreEmoji path */
         path?: (string|null);
+
+        /** StoreEmoji desc */
+        desc?: (alita.IDesc[]|null);
     }
 
     /** Represents a StoreEmoji. */
@@ -39876,6 +40071,9 @@ export namespace alita {
 
         /** StoreEmoji path. */
         public path: string;
+
+        /** StoreEmoji desc. */
+        public desc: alita.IDesc[];
 
         /**
          * Creates a new StoreEmoji instance using the specified properties.
@@ -39962,6 +40160,9 @@ export namespace alita {
 
         /** StoreEmojiPack iconUrl */
         iconUrl?: (string|null);
+
+        /** StoreEmojiPack emoji */
+        emoji?: (alita.IStoreEmoji[]|null);
     }
 
     /** Represents a StoreEmojiPack. */
@@ -39984,6 +40185,9 @@ export namespace alita {
 
         /** StoreEmojiPack iconUrl. */
         public iconUrl: string;
+
+        /** StoreEmojiPack emoji. */
+        public emoji: alita.IStoreEmoji[];
 
         /**
          * Creates a new StoreEmojiPack instance using the specified properties.
@@ -40058,6 +40262,9 @@ export namespace alita {
 
     /** Properties of a StoreEmojiList. */
     interface IStoreEmojiList {
+
+        /** StoreEmojiList emojiPack */
+        emojiPack?: (alita.IStoreEmojiPack[]|null);
     }
 
     /** Represents a StoreEmojiList. */
@@ -40068,6 +40275,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IStoreEmojiList);
+
+        /** StoreEmojiList emojiPack. */
+        public emojiPack: alita.IStoreEmojiPack[];
 
         /**
          * Creates a new StoreEmojiList instance using the specified properties.
@@ -40256,6 +40466,9 @@ export namespace alita {
 
     /** Properties of a CustomEmojiList. */
     interface ICustomEmojiList {
+
+        /** CustomEmojiList customEmoji */
+        customEmoji?: (alita.ICustomEmoji[]|null);
     }
 
     /** Represents a CustomEmojiList. */
@@ -40266,6 +40479,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.ICustomEmojiList);
+
+        /** CustomEmojiList customEmoji. */
+        public customEmoji: alita.ICustomEmoji[];
 
         /**
          * Creates a new CustomEmojiList instance using the specified properties.
@@ -40442,6 +40658,9 @@ export namespace alita {
 
     /** Properties of a BuiltinEmojiList. */
     interface IBuiltinEmojiList {
+
+        /** BuiltinEmojiList builtinEmoji */
+        builtinEmoji?: (alita.IBuiltinEmoji[]|null);
     }
 
     /** Represents a BuiltinEmojiList. */
@@ -40452,6 +40671,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IBuiltinEmojiList);
+
+        /** BuiltinEmojiList builtinEmoji. */
+        public builtinEmoji: alita.IBuiltinEmoji[];
 
         /**
          * Creates a new BuiltinEmojiList instance using the specified properties.
@@ -40646,6 +40868,9 @@ export namespace alita {
 
     /** Properties of a GameEmojiList. */
     interface IGameEmojiList {
+
+        /** GameEmojiList gameEmoji */
+        gameEmoji?: (alita.IGameEmoji[]|null);
     }
 
     /** Represents a GameEmojiList. */
@@ -40656,6 +40881,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IGameEmojiList);
+
+        /** GameEmojiList gameEmoji. */
+        public gameEmoji: alita.IGameEmoji[];
 
         /**
          * Creates a new GameEmojiList instance using the specified properties.
@@ -41077,6 +41305,9 @@ export namespace alita {
 
         /** AutoDownload msgAutoDownloadGeneral */
         msgAutoDownloadGeneral?: (alita.IMessageContentAutoDownloadGeneral|null);
+
+        /** AutoDownload msgAutoDownload */
+        msgAutoDownload?: (alita.IMessageContentAutoDownload[]|null);
     }
 
     /** Represents an AutoDownload. */
@@ -41090,6 +41321,9 @@ export namespace alita {
 
         /** AutoDownload msgAutoDownloadGeneral. */
         public msgAutoDownloadGeneral?: (alita.IMessageContentAutoDownloadGeneral|null);
+
+        /** AutoDownload msgAutoDownload. */
+        public msgAutoDownload: alita.IMessageContentAutoDownload[];
 
         /**
          * Creates a new AutoDownload instance using the specified properties.
@@ -41382,6 +41616,9 @@ export namespace alita {
     /** Properties of an EmojiConfig. */
     interface IEmojiConfig {
 
+        /** EmojiConfig builtinEomjiConfig */
+        builtinEomjiConfig?: (alita.IBuiltinEmojiConfig[]|null);
+
         /** EmojiConfig disableFlag */
         disableFlag?: (number|null);
     }
@@ -41394,6 +41631,9 @@ export namespace alita {
          * @param [properties] Properties to set
          */
         constructor(properties?: alita.IEmojiConfig);
+
+        /** EmojiConfig builtinEomjiConfig. */
+        public builtinEomjiConfig: alita.IBuiltinEmojiConfig[];
 
         /** EmojiConfig disableFlag. */
         public disableFlag: number;
@@ -41477,6 +41717,9 @@ export namespace alita {
 
         /** ContactConfig isBlocBizContact */
         isBlocBizContact?: (boolean|null);
+
+        /** ContactConfig whiteList */
+        whiteList?: (string[]|null);
     }
 
     /** Represents a ContactConfig. */
@@ -41493,6 +41736,9 @@ export namespace alita {
 
         /** ContactConfig isBlocBizContact. */
         public isBlocBizContact: boolean;
+
+        /** ContactConfig whiteList. */
+        public whiteList: string[];
 
         /**
          * Creates a new ContactConfig instance using the specified properties.
@@ -44158,6 +44404,130 @@ export namespace alita {
 
         /**
          * Converts this HandOffMasterFile to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}
+
+/** Namespace callback. */
+export namespace callback {
+
+    /** CallbackType enum. */
+    enum CallbackType {
+        kCallbackTypeResponse = 1,
+        kCallbackTypeEvent = 2
+    }
+
+    /** Properties of a CommCallback. */
+    interface ICommCallback {
+
+        /** CommCallback type */
+        type?: (number|null);
+
+        /** CommCallback handle */
+        handle?: (number|Long|null);
+
+        /** CommCallback taskid */
+        taskid?: (number|Long|null);
+
+        /** CommCallback eventType */
+        eventType?: (number|null);
+
+        /** CommCallback content */
+        content?: (Uint8Array|null);
+    }
+
+    /** Represents a CommCallback. */
+    class CommCallback implements ICommCallback {
+
+        /**
+         * Constructs a new CommCallback.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: callback.ICommCallback);
+
+        /** CommCallback type. */
+        public type: number;
+
+        /** CommCallback handle. */
+        public handle: (number|Long);
+
+        /** CommCallback taskid. */
+        public taskid: (number|Long);
+
+        /** CommCallback eventType. */
+        public eventType: number;
+
+        /** CommCallback content. */
+        public content: Uint8Array;
+
+        /**
+         * Creates a new CommCallback instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CommCallback instance
+         */
+        public static create(properties?: callback.ICommCallback): callback.CommCallback;
+
+        /**
+         * Encodes the specified CommCallback message. Does not implicitly {@link callback.CommCallback.verify|verify} messages.
+         * @param message CommCallback message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: callback.ICommCallback, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CommCallback message, length delimited. Does not implicitly {@link callback.CommCallback.verify|verify} messages.
+         * @param message CommCallback message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: callback.ICommCallback, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CommCallback message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CommCallback
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): callback.CommCallback;
+
+        /**
+         * Decodes a CommCallback message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CommCallback
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): callback.CommCallback;
+
+        /**
+         * Verifies a CommCallback message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CommCallback message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CommCallback
+         */
+        public static fromObject(object: { [k: string]: any }): callback.CommCallback;
+
+        /**
+         * Creates a plain object from a CommCallback message. Also converts values to other types if specified.
+         * @param message CommCallback
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: callback.CommCallback, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CommCallback to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

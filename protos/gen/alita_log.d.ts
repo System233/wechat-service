@@ -1555,3 +1555,127 @@ export namespace alita {
         public toJSON(): { [k: string]: any };
     }
 }
+
+/** Namespace logcallback. */
+export namespace logcallback {
+
+    /** CallbackType enum. */
+    enum CallbackType {
+        kCallbackTypeResponse = 1,
+        kCallbackTypeEvent = 2
+    }
+
+    /** Properties of a CommCallback. */
+    interface ICommCallback {
+
+        /** CommCallback type */
+        type?: (number|null);
+
+        /** CommCallback handle */
+        handle?: (number|Long|null);
+
+        /** CommCallback taskid */
+        taskid?: (number|Long|null);
+
+        /** CommCallback eventType */
+        eventType?: (number|null);
+
+        /** CommCallback content */
+        content?: (Uint8Array|null);
+    }
+
+    /** Represents a CommCallback. */
+    class CommCallback implements ICommCallback {
+
+        /**
+         * Constructs a new CommCallback.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: logcallback.ICommCallback);
+
+        /** CommCallback type. */
+        public type: number;
+
+        /** CommCallback handle. */
+        public handle: (number|Long);
+
+        /** CommCallback taskid. */
+        public taskid: (number|Long);
+
+        /** CommCallback eventType. */
+        public eventType: number;
+
+        /** CommCallback content. */
+        public content: Uint8Array;
+
+        /**
+         * Creates a new CommCallback instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CommCallback instance
+         */
+        public static create(properties?: logcallback.ICommCallback): logcallback.CommCallback;
+
+        /**
+         * Encodes the specified CommCallback message. Does not implicitly {@link logcallback.CommCallback.verify|verify} messages.
+         * @param message CommCallback message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: logcallback.ICommCallback, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CommCallback message, length delimited. Does not implicitly {@link logcallback.CommCallback.verify|verify} messages.
+         * @param message CommCallback message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: logcallback.ICommCallback, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CommCallback message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CommCallback
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): logcallback.CommCallback;
+
+        /**
+         * Decodes a CommCallback message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CommCallback
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): logcallback.CommCallback;
+
+        /**
+         * Verifies a CommCallback message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CommCallback message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CommCallback
+         */
+        public static fromObject(object: { [k: string]: any }): logcallback.CommCallback;
+
+        /**
+         * Creates a plain object from a CommCallback message. Also converts values to other types if specified.
+         * @param message CommCallback
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: logcallback.CommCallback, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CommCallback to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}
